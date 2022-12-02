@@ -15,5 +15,4 @@ func main() {
 	http.Handle("/Assets/", http.StripPrefix("/Assets/", http.FileServer(http.Dir("Assets"))))
 
 	http.ListenAndServe(port, nil)
-
 }
