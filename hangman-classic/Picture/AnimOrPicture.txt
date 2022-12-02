@@ -1,0 +1,22 @@
+            ________   ___   ____
+           / __   __| / _ \ |  _ \
+     ______> \ | |   |  _  ||    /_____________________________
+    / _______/ |_|   |_| |_||_|\______________________________ \
+   / /                                                        \ \
+  | |     WELCOME to the hangman game version StarWars         | |
+  | |                                                          | |
+  | |  We made 2 versions of the game                          | |
+  | |                                                          | |
+  | |         1- First version with animations.                | |
+  | |                                                          | |
+  | |         2- Second version only with picture.             | |
+  | |                                                          | |
+  | |   Enter the version number to start the game.            | |
+  | |                                                          | |             
+  | |                                                          | |                 
+  | |  Enjoy the game, may the force be with you !             | |                     
+  | |                                                          | |            
+   \ \____________________________    _   ___   ____   _______/ /
+    \___________________________  |  | | / _ \ |  _ \ / _______/                      
+                                | |/\| ||  _  ||    / > \                              
+                                 \_/\_/ |_| |_||_|\_\|__/                            

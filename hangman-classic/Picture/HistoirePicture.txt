@@ -1,0 +1,25 @@
+1
+        .                                                                             .              .       .                    .      .                         .                           .                  
+                                            .                    .        .                   Welcome in this galaxy,.                                                                                            
+                      .                                                        .        .    our star fighter informed              .                   .                      .                                  
+                                                                                            us  a  droid   called  C3PO      .             .                                                   .         .        
+                                    .                .                                     disappeared  in  one  day  on                                                                                          
+         .                                                        .       .               Tatooine  planet. Luc Skywalker                                          .                                              
+                                            .                                            asked  us  to  find  him.    Your           .                                       .                                    
+                        .                                                               mission  is  to go to Tatooine, and                            .                                             .            
+                                                                            .          to  save  the  droid,  Luc  gave us a                  .                                         .                         
+         .                                                        .                   droid to help us,  code  name  R2D2. He            .                                  .                                     
+                                                      .                              will be able to locate easily C3PO.  Once                                   .                                                
+                                                                                    on the planet we know a  hangman  organized                                                              .                    
+                   .                    .                                          by Jawas, we think the next victim  is  C3PO.                     .                      .                                     
+        .                  .                                                      The goal  is  easy.  You  must  find  the  word           .                                                                     
+                                                                                 randomly defined  from  a  file  text  previsouly      .                                                                         
+                                                     .                          chosen.  You have ten tries to find the word.   You                        .                           .                          
+                                        .                           .          can try to find a letter or the word in full,  if you                                   .                                          
+              .             .                                                 find the word before losing your ten lives, you win and                                                                             
+                                                     .                       allow C3PO to escape from the death and  Master Skywalker     .             .                                          .             
+                                     .                            .       . will thank you in person, else if  you  lose  all  of  your                                .                                          
+        .                                                                  lives, a terrible fate will append to C3PO. Good luck and may .            .                                                           
+                                                     .                    the force be with you.                                                                   .         .                                 .  
+                     .                .                        .                 .                                   .            .                        .                           .                          
+1
