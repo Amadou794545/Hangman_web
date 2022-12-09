@@ -5,12 +5,12 @@ import (
 	"time"
 )
 
-func RevealLetter(word string, difficulty string) []string { // Function to reveal random letters depending on the difficulty
+func RevealLetter(word string) []string { // Function to reveal random letters depending on the difficulty
 	var finalPrint []string
 	for i := 0; i < len(word); i++ { // The final print is full of underscore
 		finalPrint = append(finalPrint, "_")
 	}
-	nbLetterToReveal := Difficulties(word, difficulty) // Number of letter that we need to reveal
+	nbLetterToReveal := len(word)/2 - 1
 	var possibleLetter []string
 	var letter string
 	var recurrenceLetter int
@@ -57,17 +57,4 @@ func RevealLetter(word string, difficulty string) []string { // Function to reve
 	}
 	repetitionLW("nil", true, finalPrint, true)
 	return finalPrint
-}
-
-// Function to know what the user choose for the difficulty
-func Difficulties(word string, userChoice string) int {
-	var difficulty int
-	if userChoice == "easy" {
-		difficulty = len(word) / 2
-	} else if userChoice == "medium" {
-		difficulty = len(word)/2 - 1
-	} else if userChoice == "hard" {
-		difficulty = 0
-	}
-	return difficulty
 }

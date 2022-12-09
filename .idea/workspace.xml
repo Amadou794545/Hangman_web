@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="" />
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_17__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/hangman.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/hangman.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Anim.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AnimIntro.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AnimOrPicture.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AnimWL.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/ExitCommand.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/ExitCommand.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Picture.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/PictureIntro.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/PictureWL.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/StartAndStop.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Unzip.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/handlers.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
