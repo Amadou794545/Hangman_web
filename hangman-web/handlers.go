@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -10,8 +9,17 @@ import (
 //	RenderTemplate(w, "home")
 //}
 
-func Contact(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "contact")
+func Level(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Level")
+
+}
+
+func Start(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Start")
+	if r.URL.Path != "/" {
+		http.Error(w, "404 not found.", http.StatusNotFound)
+		return
+	}
 }
 
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
@@ -24,28 +32,25 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "home")
-	if r.URL.Path != "/" {
-		http.Error(w, "404 not found.", http.StatusNotFound)
-		return
-	}
-	switch r.Method {
-	case "POST":
-		// Call ParseForm() to parse the raw query and update r.PostForm and r.Form.
-		if err := r.ParseForm(); err != nil {
-			fmt.Fprintf(w, "ParseForm() err: %v", err)
-			return
-		}
-		fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
-		name := r.FormValue("name")
-		address := r.FormValue("address")
-		fmt.Fprintf(w, "Name = %s\n", name)
-		fmt.Fprintf(w, "Address = %s\n", address)
-	default:
-		fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
-	}
+	RenderTemplate(w, "Home")
+
+	//switch r.Method {
+	//case "POST":
+	//	// Call ParseForm() to parse the raw query and update r.PostForm and r.Form.
+	//	if err := r.ParseForm(); err != nil {
+	//	fmt.Fprintf(w, "ParseForm() err: %v", err)
+	//	return
+	//	}
+	//	fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
+	//	name := r.FormValue("name")
+	//	address := r.FormValue("address")
+	//	fmt.Fprintf(w, "Name = %s\n", name)
+	//	fmt.Fprintf(w, "Address = %s\n", address)
+	//default:
+	//		fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
+	//	}
 }
 
-func Jouer(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "jouer")
+func Game(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Game")
 }
