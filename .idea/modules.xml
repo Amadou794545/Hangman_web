@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HANGMAN.iml" filepath="$PROJECT_DIR$/.idea/HANGMAN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hangman-web.iml" filepath="$PROJECT_DIR$/.idea/hangman-web.iml" />
     </modules>
   </component>
 </project>
