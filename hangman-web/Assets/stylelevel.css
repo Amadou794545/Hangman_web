@@ -1,0 +1,74 @@
+body{
+    background-image:url("https://i.pinimg.com/originals/b8/2f/28/b82f28a7e9c8fcb3868d3d94652c107c.gif");
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: japon;
+    src:url('Japon.ttf');
+}
+a{
+    font-family: japon;
+}
+.buttoneasy{
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.buttoneasy:hover{
+
+}
+
+.buttonmeduim{
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.buttonmeduim:hover{
+
+}
+
+.buttondifficult{
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.buttondifficult:hover{
+
+}
