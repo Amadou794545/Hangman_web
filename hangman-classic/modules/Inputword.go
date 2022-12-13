@@ -7,10 +7,12 @@ import (
 	"time"
 )
 
-func InputWord(file string) string { // Take randomly a word in file given .
+func InputWord() string { // Take randomly a word in file given .
 
 	var words []string
 	var word string
+
+	file := Difficulty()
 
 	// Open file
 	openFile, err := os.Open(file)

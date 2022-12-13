@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-const port = ":8080"
+const port = ":443"
 
 func main() {
 	http.HandleFunc("/", Start)
