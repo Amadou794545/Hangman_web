@@ -4,32 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_17__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/hangman.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/hangman.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Anim.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AnimIntro.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AnimOrPicture.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AnimWL.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/ExitCommand.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/ExitCommand.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Picture.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/PictureIntro.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/PictureWL.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/StartAndStop.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Unzip.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/handlers.go" afterDir="false" />
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game">
+      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/game.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.19.2" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/Go" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -58,7 +41,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/THOLLARD/Documents/Hangman/HANGMAN&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/amado&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -75,6 +58,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

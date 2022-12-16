@@ -2,19 +2,32 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="../Assets/stylehome.css" type="text/css"/>
+  <link rel="stylesheet" href="../Assets/game.css" type="text/css"/>
   <title>HANGMAN-WEB</title>
 </head>
 
 <body>
 <!--<input type="" title="entrer une lettre" >-->
+<embed src="../Templates/musique%20(1).mp3" loop="true" autostart="true"  width="0" height="0" volume="100">
+<div class="div_principal">
+  <div class="div_gauche">
+    <form method="POST" action="#">
+      <label>entrer une lettre</label> </br> <input name="name" type="text" value=""/>
+      <input type="submit" value="Envoyer" />
+    </form>
+  </div>
+  <div class="div_droite">
 
+  </div>
+
+</div>
+<!--
 <div class="input">
   <form method="POST" action="/">
     <label>entrer une lettre</label> </br> <input name="name" type="text" value=""/>
     <input type="submit" value="Envoyer" />
   </form>
 </div>
-
+-->
 </body>
 </html>
