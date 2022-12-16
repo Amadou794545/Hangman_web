@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/Assets/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Assets/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/game.html" afterDir="false" />
-    </list>
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="hmtl/css(#2): &#10;&#10;Add picture" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +59,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game" />
-    <option name="LAST_COMMIT_MESSAGE" value="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game" />
+    <MESSAGE value="hmtl/css(#2): &#10;&#10;photo" />
+    <MESSAGE value="hmtl/css(#2): &#10;&#10;Add picture" />
+    <option name="LAST_COMMIT_MESSAGE" value="hmtl/css(#2): &#10;&#10;Add picture" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
