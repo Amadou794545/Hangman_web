@@ -6,10 +6,6 @@ import (
 	"net/http"
 )
 
-//func Home(w http.ResponseWriter, r *http.Request) {
-//	RenderTemplate(w, "home")
-//}
-
 func Level(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Level")
 
@@ -35,14 +31,6 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 func Home(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Home")
 
-	//switch r.Method {
-	//case "POST":
-	//	// Call ParseForm() to parse the raw query and update r.PostForm and r.Form.
-	//	if err := r.ParseForm(); err != nil {
-	//	fmt.Fprintf(w, "ParseForm() err: %v", err)
-	//	return
-	//	}
-	//	fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
 	name := r.FormValue("name")
 	address := r.FormValue("address")
 	fmt.Fprintf(w, "Name = %s\n", name)
