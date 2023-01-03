@@ -7,13 +7,17 @@ import (
 	"time"
 )
 
-func InputWord() string { // Take randomly a word in file given .
-
+func InputWord(file string) string { // Take randomly a word in file given .
 	var words []string
 	var word string
-
-	file := Difficulty()
-
+	switch file {
+	case "word.txt":
+		file = "C:\\Users\\THOLLARD\\Documents\\Hangman\\HANGMAN\\hangman-web\\Templates\\words.txt"
+	case "word2.txt":
+		file = "C:\\Users\\THOLLARD\\Documents\\Hangman\\HANGMAN\\hangman-web\\Templates\\words2.txt"
+	case "word3.txt":
+		file = "C:\\Users\\THOLLARD\\Documents\\Hangman\\HANGMAN\\hangman-web\\Templates\\words3.txt"
+	}
 	// Open file
 	openFile, err := os.Open(file)
 	if err != nil {

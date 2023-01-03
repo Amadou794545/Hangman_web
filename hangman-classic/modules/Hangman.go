@@ -6,26 +6,26 @@ import (
 )
 
 type HangmanData struct {
-	Version    string   `json:"version"`
-	Difficulty string   `json:"difficulty"`
-	Live       int      `json:"live"`
-	Word       string   `json:"word"`
-	Result     []string `json:"result"`
-	UsedLW     []string `json:"used_lw"`
-	Index      []int    `json:"index"`
+	Difficulty string
+	Live       int
+	Word       string
+	Result     []string
+	UsedLW     []string
+	Index      []int
+	UserLetter string
+	Picture    string
 }
 
-func Hangman() {
+func Hangman(hangData HangmanData) {
 	// Variables
-	var hangData HangmanData
 	var resultCorrectLetter bool
 	var tryWord bool
 
 	// Initialize the game without save
 
 	hangData.Live = 10
-	hangData.Word = InputWord()
-	hangData.Result = RevealLetter(hangData.Word)
+	//hangData.Word = InputWord()
+	//hangData.Result = RevealLetter(hangData.Word)
 	println("Good Luck, you have 10 attempts.")
 	println()
 
@@ -34,11 +34,11 @@ func Hangman() {
 	// Start the game
 	for hangData.Live > 0 { // If he has live again
 		if TestFinish(hangData.Result) == true {
-			PictureWL("victory")
+			//PictureWL("victory")
 			return
 		}
 		var UserLetter string
-		UserLetter, hangData.UsedLW = AskLetter(hangData.Word, hangData)
+		UserLetter, hangData.UsedLW = AskLetter(hangData.Word, &hangData)
 
 		hangData.Index, tryWord = TryLetter(UserLetter, hangData.Word)                                            // Call function TryLetter
 		hangData.Result, resultCorrectLetter = UpdateResult(UserLetter, hangData.Index, tryWord, hangData.Result) // Call UpdateResult
@@ -46,7 +46,7 @@ func Hangman() {
 		if resultCorrectLetter == false && tryWord == false {
 			fmt.Println("Choose: " + UserLetter)
 			hangData.Live -= 1
-			Picture(hangData.Live)
+			//Picture(hangData.Live)
 			if hangData.Live != 0 {
 				println()
 				println("Not present in the word, " + string(rune(hangData.Live)+48) + " attempts remaining")
@@ -57,7 +57,7 @@ func Hangman() {
 			fmt.Println("Choose: " + UserLetter)
 			for i := 0; i < 2; i++ {
 				hangData.Live -= 1
-				Picture(hangData.Live)
+				//Picture(hangData.Live)
 				time.Sleep(2 * time.Second)
 			}
 			if hangData.Live != 0 {
@@ -71,5 +71,5 @@ func Hangman() {
 			println()
 		}
 	}
-	PictureWL("lose")
+	//PictureWL("lose")
 }

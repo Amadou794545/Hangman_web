@@ -8,7 +8,7 @@ import (
 )
 
 func AsciiArt(word []string) {
-	readFile, err := os.Open("standard1.txt") // Take the data from the txt file
+	readFile, err := os.Open("../hangman-web/Assets/standard1.txt") // Take the data from the txt file
 	if err != nil {
 		log.Fatal(err)
 	}

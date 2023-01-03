@@ -1,11 +1,12 @@
 package modules
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
 
-func RevealLetter(word string) []string { // Function to reveal random letters depending on the difficulty
+func RevealLetter(word string, GameState *HangmanData) { // Function to reveal random letters depending on the difficulty
 	var finalPrint []string
 	for i := 0; i < len(word); i++ { // The final print is full of underscore
 		finalPrint = append(finalPrint, "_")
@@ -56,5 +57,6 @@ func RevealLetter(word string) []string { // Function to reveal random letters d
 		}
 	}
 	repetitionLW("nil", true, finalPrint, true)
-	return finalPrint
+	GameState.Result = finalPrint
+	fmt.Printf("1 %s", GameState.Result)
 }
