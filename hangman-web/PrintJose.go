@@ -9,11 +9,11 @@ func PrintJose(Live int, Picture string) string {
 	case 8:
 		Picture = "/Assets/chiffre8.jpeg"
 	case 7:
-		Picture = "/Assets/chiffre7.jpeg"
+		Picture = "/Assets/chiffre7.png"
 	case 6:
-		Picture = "/Assets/chiffre6.jpeg"
+		Picture = "/Assets/chiffre6.png"
 	case 5:
-		Picture = "/Assets/chiffre5.jpeg"
+		Picture = "/Assets/chiffre5.jpg"
 	case 4:
 		Picture = "/Assets/chiffre4.jpeg"
 	case 3:

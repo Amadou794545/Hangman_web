@@ -5,11 +5,10 @@ import (
 )
 
 var goodLW string
-var UsedLW []string
 
 func AskLetter(word string, GameState *HangmanData) (string, []string) { // Ask GameState.UserLetter and check if it's between "a" and "z"
 
-	_, GameState.UsedLW = repetitionLW(goodLW, true, nil, false) // Print letter/word already used
+	_, GameState.UsedLW = repetitionLW(goodLW, true, nil, false, GameState) // Print letter/word already used
 
 	if len(GameState.UserLetter) == len(word) {
 		goodLW = GameState.UserLetter
@@ -18,9 +17,9 @@ func AskLetter(word string, GameState *HangmanData) (string, []string) { // Ask 
 	}
 	if GameState.UserLetter != "" {
 		var goodLetter bool
-		goodLetter, GameState.UsedLW = repetitionLW(goodLW, false, nil, false)
+		goodLetter, GameState.UsedLW = repetitionLW(goodLW, false, nil, false, GameState)
 		if goodLetter == false {
-			//faire quelque chose pour les répétitions de lettres
+			GameState.AlreadyUsed = "You already used this, check the list of already used input !!"
 		}
 	} else {
 		return goodLW, GameState.UsedLW
@@ -29,61 +28,61 @@ func AskLetter(word string, GameState *HangmanData) (string, []string) { // Ask 
 }
 
 // Function to know if the letter GameState.UserLetter is already used OR Print letter/word already used
-func repetitionLW(goodLW string, printUsed bool, reveal []string, revealW bool) (bool, []string) {
+func repetitionLW(goodLW string, printUsed bool, reveal []string, revealW bool, GameState *HangmanData) (bool, []string) {
 	var letterNotUsed int
 	var countLetterAlreadyUsed int
 	println()
 	if revealW == false {
 		if printUsed == false {
-			if UsedLW == nil {
-				UsedLW = append(UsedLW, goodLW)
+			if GameState.UsedLW == nil {
+				GameState.UsedLW = append(GameState.UsedLW, goodLW)
 			} else {
-				for _, lw := range UsedLW {
+				for _, lw := range GameState.UsedLW {
 					if goodLW == lw {
 						letterNotUsed += 1
 					}
 				}
 				if letterNotUsed == 0 {
-					UsedLW = append(UsedLW, goodLW)
+					GameState.UsedLW = append(GameState.UsedLW, goodLW)
 				} else {
 					fmt.Println("You already used this, check the list of already used input !!")
-					return false, UsedLW
+					return false, GameState.UsedLW
 				}
 			}
-			return true, UsedLW
+			return true, GameState.UsedLW
 		} else { // Print Letter already used
-			for i := 0; i < len(UsedLW); i++ {
-				if UsedLW != nil {
+			for i := 0; i < len(GameState.UsedLW); i++ {
+				if GameState.UsedLW != nil {
 					if i == 0 {
 						fmt.Printf("Letter or Word already used :")
-						fmt.Printf(" " + UsedLW[i] + ",")
+						fmt.Printf(" " + GameState.UsedLW[i] + ",")
 					} else {
-						fmt.Printf(" " + UsedLW[i] + ",")
+						fmt.Printf(" " + GameState.UsedLW[i] + ",")
 					}
 				}
 			}
-			if UsedLW != nil {
+			if GameState.UsedLW != nil {
 				println()
 			}
-			return true, UsedLW
+			return true, GameState.UsedLW
 		}
 	} else { // Add letter from the reveal
 		for _, word := range reveal {
 			countLetterAlreadyUsed = 0
-			if word != "_" && UsedLW != nil {
-				for _, usedLetter := range UsedLW {
+			if word != "_" && GameState.UsedLW != nil {
+				for _, usedLetter := range GameState.UsedLW {
 					if word == usedLetter {
 						countLetterAlreadyUsed += 1
 					}
 				}
 				if countLetterAlreadyUsed == 0 {
-					UsedLW = append(UsedLW, word)
+					GameState.UsedLW = append(GameState.UsedLW, word)
 				}
 			}
-			if word != "_" && UsedLW == nil {
-				UsedLW = append(UsedLW, word)
+			if word != "_" && GameState.UsedLW == nil {
+				GameState.UsedLW = append(GameState.UsedLW, word)
 			}
 		}
-		return true, UsedLW
+		return true, GameState.UsedLW
 	}
 }

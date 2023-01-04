@@ -4,29 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Hangman(#1): &#10;&#10;Modify function from Hangman-Classic">
-      <change afterPath="$PROJECT_DIR$/hangman-web/Assets/standard1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hangman-web/Difficulty.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hangman-web/PrintJose.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hangman-web/Templates/Congratulation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hangman-web/Templates/Loser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_17_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_17__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_09_12_2022_13_18__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Html(#2): &#10;&#10;Add or modify some html page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AsciiArt.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/AsciiArt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/hangman.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AskLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/AskLetter.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/TestFinish.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/TestFinish.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/Difficulty.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Difficulty.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/PrintJose.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/PrintJose.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-web/Templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-web/Templates/level.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/level.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,23 +48,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/THOLLARD/Documents/Hangman/HANGMAN/hangman-web/Assets"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/THOLLARD/Documents/Hangman/HANGMAN/hangman-web/Assets&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\THOLLARD\Documents\Hangman\HANGMAN\hangman-web\Assets" />
@@ -104,7 +94,9 @@
     <MESSAGE value="html/css(#2): html/css&#10;&#10;Added div tags to differentiate the different sides of the game" />
     <MESSAGE value="hmtl/css(#2): &#10;&#10;photo" />
     <MESSAGE value="hmtl/css(#2): &#10;&#10;Add picture" />
-    <option name="LAST_COMMIT_MESSAGE" value="hmtl/css(#2): &#10;&#10;Add picture" />
+    <MESSAGE value="HangmanCore(#1): &#10;&#10;Add all function to play but not working at 100 %" />
+    <MESSAGE value="Html(#2): &#10;&#10;Add or modify some html page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Html(#2): &#10;&#10;Add or modify some html page" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
