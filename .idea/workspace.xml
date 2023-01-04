@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Html(#2): &#10;&#10;Add or modify some html page">
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Html(#2): &#10;&#10;Change html page to addd variable from go">
+      <change afterPath="$PROJECT_DIR$/hangman-classic/modules/Repetition.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/hangman.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AskLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/AskLetter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AskLetter.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/Difficulty.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Difficulty.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/PrintJose.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/PrintJose.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/level.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/level.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/handlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Go File" />
         <option value="HTML File" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -62,7 +56,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/THOLLARD/Documents/Hangman/HANGMAN/hangman-web/Assets&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/THOLLARD/Documents/Hangman/HANGMAN&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -96,7 +90,9 @@
     <MESSAGE value="hmtl/css(#2): &#10;&#10;Add picture" />
     <MESSAGE value="HangmanCore(#1): &#10;&#10;Add all function to play but not working at 100 %" />
     <MESSAGE value="Html(#2): &#10;&#10;Add or modify some html page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Html(#2): &#10;&#10;Add or modify some html page" />
+    <MESSAGE value="hangmancore(#1): &#10;&#10;Change function to work on the web page , only some problem are here again , like if the user enter an letter or word already used / if the user put word with niot the same length than the word chose" />
+    <MESSAGE value="Html(#2): &#10;&#10;Change html page to addd variable from go" />
+    <option name="LAST_COMMIT_MESSAGE" value="Html(#2): &#10;&#10;Change html page to addd variable from go" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

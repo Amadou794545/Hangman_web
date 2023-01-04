@@ -56,7 +56,7 @@ func RevealLetter(word string, GameState *HangmanData) { // Function to reveal r
 			}
 		}
 	}
-	repetitionLW("nil", true, finalPrint, true, GameState)
 	GameState.Result = finalPrint
+	Repetition(true, GameState)
 	fmt.Printf("1 %s", GameState.Result)
 }

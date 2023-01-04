@@ -39,7 +39,7 @@ func Hangman(hangData HangmanData) {
 			return
 		}
 		var UserLetter string
-		UserLetter, hangData.UsedLW = AskLetter(hangData.Word, &hangData)
+		//UserLetter, hangData.UsedLW = AskLetter(hangData.Word, &hangData)
 
 		hangData.Index, tryWord = TryLetter(UserLetter, hangData.Word)                                            // Call function TryLetter
 		hangData.Result, resultCorrectLetter = UpdateResult(UserLetter, hangData.Index, tryWord, hangData.Result) // Call UpdateResult

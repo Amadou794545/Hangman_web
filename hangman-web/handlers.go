@@ -74,46 +74,45 @@ func Game(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	GameState.UserLetter = r.FormValue("Enter")
-
 	if GameState.UserLetter != "" {
 		if GameState.Live > 0 {
 			fmt.Printf("%s --> UserLetter\n", GameState.UserLetter)
 			fmt.Printf("%s --> Result\n", GameState.Result)
-			GameState.UserLetter, GameState.UsedLW = modules.AskLetter(GameState.Word, &GameState)
-			GameState.Index, tryWord = modules.TryLetter(GameState.UserLetter, GameState.Word)
-			GameState.Result, resultCorrectLetter = modules.UpdateResult(GameState.UserLetter, GameState.Index, tryWord, GameState.Result)
+			if modules.Repetition(false, &GameState) == false {
+				GameState.Index, tryWord = modules.TryLetter(GameState.UserLetter, GameState.Word)
+				GameState.Result, resultCorrectLetter = modules.UpdateResult(GameState.UserLetter, GameState.Index, tryWord, GameState.Result)
 
-			if resultCorrectLetter == false && tryWord == false {
-				fmt.Println("Choose: " + GameState.UserLetter)
-				GameState.Live -= 1
-				GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
-				if GameState.Live != 0 {
-					println()
-					println("Not present in the word, " + string(rune(GameState.Live)+48) + " attempts remaining")
-				}
-				// Bad word, Print hangman
-			} else if resultCorrectLetter == false && tryWord == true {
-				fmt.Println("Choose: " + GameState.UserLetter)
-				GameState.Live -= 2
+				if resultCorrectLetter == false && tryWord == false {
+					fmt.Println("Choose: " + GameState.UserLetter)
+					GameState.Live -= 1
+					GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+					if GameState.Live != 0 {
+						println()
+						println("Not present in the word, " + string(rune(GameState.Live)+48) + " attempts remaining")
+					}
+					// Bad word, Print hangman
+				} else if resultCorrectLetter == false && tryWord == true {
+					fmt.Println("Choose: " + GameState.UserLetter)
+					GameState.Live -= 2
 
-				if GameState.Live != 0 {
-					println()
-					println("It's not the good word, " + string(rune(GameState.Live)+48) + " attempts remaining")
+					if GameState.Live != 0 {
+						println()
+						println("It's not the good word, " + string(rune(GameState.Live)+48) + " attempts remaining")
+					}
+				} else { // Good letter or word
 				}
-			} else { // Good letter or word
+			}
+			if modules.TestFinish(GameState.Result) == true {
+				http.Redirect(w, r, "Congratulation", http.StatusFound)
+				GameState = modules.HangmanData{}
+			}
+			fmt.Printf("%d --> Nombre de vie restantes", GameState.Live)
+			if GameState.Live == 0 {
+				http.Redirect(w, r, "/Loser", http.StatusFound)
+				GameState = modules.HangmanData{}
 			}
 		}
-		if modules.TestFinish(GameState.Result) == true {
-			http.Redirect(w, r, "Congratulation", http.StatusFound)
-			GameState = modules.HangmanData{}
-		}
-		fmt.Printf("%d --> Nombre de vie restantes", GameState.Live)
-		if GameState.Live == 0 {
-			http.Redirect(w, r, "/Loser", http.StatusFound)
-			GameState = modules.HangmanData{}
-		}
 	}
-	GameState.AlreadyUsed = ""
 	t.Execute(w, GameState)
 }
 
