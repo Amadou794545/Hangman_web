@@ -12,17 +12,25 @@
 <div class="div_principal">
 
   <div class="div_gauche">
-    <H1>{{ .Result }}</H1>
+    <H1> {{range .Result}} {{.}} {{end}}</H1>
     <p>You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
       <input type="text" id="Enter" name="Enter">
       <input type="submit" >
     </form>
-    <H2>{{ .UsedLW }}</H2>
+    <H2>Letter or Word already used : {{range .UsedLW}} {{.}} {{end}}</H2>
     <p>
     {{ .AlreadyUsed }}
+      <br>
     </p>
-
+    <p>
+      {{ .OnlyLowerCase }}
+      <br>
+    </p>
+    <p>
+      {{ .BadInput }}
+      <br>
+    </p>
   </div>
   <div class="div_droite">
     <img src="{{.Picture}}">
