@@ -13,13 +13,15 @@
 
   <div class="div_gauche">
     <H1>{{ .Result }}</H1>
-
+    <p>You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
       <input type="text" id="Enter" name="Enter">
       <input type="submit" >
     </form>
     <H2>{{ .UsedLW }}</H2>
-
+    <p>
+    {{ .AlreadyUsed }}
+    </p>
 
   </div>
   <div class="div_droite">
