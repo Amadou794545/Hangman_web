@@ -12,12 +12,14 @@ func InputWord(file string) string { // Take randomly a word in file given .
 	var words []string
 	var word string
 	switch file {
-	case "word.txt":
+	case "words.txt":
 		fmt.Printf("BOOM")
 		file = "../hangman-web/Templates/words.txt"
-	case "word2.txt":
+	case "words2.txt":
+		fmt.Printf("BOOM")
 		file = "../hangman-web/Templates/words2.txt"
-	case "word3.txt":
+	case "words3.txt":
+		fmt.Printf("BOOM")
 		file = "../hangman-web/Templates/words3.txt"
 	}
 	// Open file
