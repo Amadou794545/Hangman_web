@@ -79,6 +79,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("%s --> UserLetter\n", GameState.UserLetter)
 			fmt.Printf("%s --> Result\n", GameState.Result)
 			GameState.OnlyLowerCase = ""
+			GameState.BadInput = ""
 			for _, letter := range GameState.UserLetter {
 				if string(letter) < "a" || string(letter) > "z" {
 					GameState.OnlyLowerCase = "Error : you can only chose lowercase characters for Hangman"
@@ -86,7 +87,6 @@ func Game(w http.ResponseWriter, r *http.Request) {
 			}
 			if GameState.OnlyLowerCase == "" {
 				if len(GameState.UserLetter) == 1 || len(GameState.UserLetter) == len(GameState.Word) {
-					GameState.BadInput = ""
 					if modules.Repetition(false, &GameState) == false {
 						GameState.Index, tryWord = modules.TryLetter(GameState.UserLetter, GameState.Word)
 						GameState.Result, resultCorrectLetter = modules.UpdateResult(GameState.UserLetter, GameState.Index, tryWord, GameState.Result)
