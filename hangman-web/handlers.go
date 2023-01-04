@@ -27,18 +27,18 @@ func Level(w http.ResponseWriter, r *http.Request) {
 	Diff.medium = r.FormValue("Medium")
 	Diff.hard = r.FormValue("Hard")
 	if Diff.easy != "" {
-		Difficulty(Diff.easy, &GameState)
 		fmt.Printf("Easy --> Activate")
+		Difficulty(Diff.easy, &GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
 		GameState.Picture = "/Assets/chiffre10.jpeg"
 	} else if Diff.medium != "" {
-		Difficulty(Diff.medium, &GameState)
 		fmt.Printf("Medium --> Activate")
+		Difficulty(Diff.medium, &GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
 		GameState.Picture = "/Assets/chiffre10.jpeg"
 	} else if Diff.hard != "" {
-		Difficulty(Diff.hard, &GameState)
 		fmt.Printf("Hard --> Activate")
+		Difficulty(Diff.hard, &GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
 		GameState.Picture = "/Assets/chiffre10.jpeg"
 	}

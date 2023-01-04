@@ -2,6 +2,7 @@ package modules
 
 import (
 	"bufio"
+	"fmt"
 	"math/rand"
 	"os"
 	"time"
@@ -12,11 +13,12 @@ func InputWord(file string) string { // Take randomly a word in file given .
 	var word string
 	switch file {
 	case "word.txt":
+		fmt.Printf("BOOM")
 		file = "../hangman-web/Templates/words.txt"
 	case "word2.txt":
-		file = "../hangman-web/Templates/words1.txt"
-	case "word3.txt":
 		file = "../hangman-web/Templates/words2.txt"
+	case "word3.txt":
+		file = "../hangman-web/Templates/words3.txt"
 	}
 	// Open file
 	openFile, err := os.Open(file)
