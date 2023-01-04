@@ -6,15 +6,17 @@ import (
 )
 
 type HangmanData struct {
-	Difficulty  string
-	Live        int
-	Word        string
-	Result      []string
-	UsedLW      []string
-	Index       []int
-	UserLetter  string
-	Picture     string
-	AlreadyUsed string
+	Difficulty    string
+	Live          int
+	Word          string
+	Result        []string
+	UsedLW        []string
+	Index         []int
+	UserLetter    string
+	Picture       string
+	AlreadyUsed   string
+	BadInput      string
+	OnlyLowerCase string
 }
 
 func Hangman(hangData HangmanData) {

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Html(#2): &#10;&#10;Change html page to addd variable from go">
-      <change afterPath="$PROJECT_DIR$/hangman-classic/modules/Repetition.go" afterDir="false" />
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Hangman(#1): &#10;&#10;Modify function Repetition Askletter&#10;To answer to all my problems">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AskLetter.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/game.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/handlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +90,8 @@
     <MESSAGE value="Html(#2): &#10;&#10;Add or modify some html page" />
     <MESSAGE value="hangmancore(#1): &#10;&#10;Change function to work on the web page , only some problem are here again , like if the user enter an letter or word already used / if the user put word with niot the same length than the word chose" />
     <MESSAGE value="Html(#2): &#10;&#10;Change html page to addd variable from go" />
-    <option name="LAST_COMMIT_MESSAGE" value="Html(#2): &#10;&#10;Change html page to addd variable from go" />
+    <MESSAGE value="Hangman(#1): &#10;&#10;Modify function Repetition Askletter&#10;To answer to all my problems" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hangman(#1): &#10;&#10;Modify function Repetition Askletter&#10;To answer to all my problems" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
