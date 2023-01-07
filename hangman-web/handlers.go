@@ -30,17 +30,17 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Easy --> Activate")
 		Difficulty(Diff.easy, &GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
-		GameState.Picture = "/Assets/chiffre10.jpeg"
+		GameState.Picture = "/Assets/HANGMAN0.png"
 	} else if Diff.medium != "" {
 		fmt.Printf("Medium --> Activate")
 		Difficulty(Diff.medium, &GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
-		GameState.Picture = "/Assets/chiffre10.jpeg"
+		GameState.Picture = "/Assets/HANGMAN0.png"
 	} else if Diff.hard != "" {
 		fmt.Printf("Hard --> Activate")
 		Difficulty(Diff.hard, &GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
-		GameState.Picture = "/Assets/chiffre10.jpeg"
+		GameState.Picture = "/Assets/HANGMAN0.png"
 	}
 	t.Execute(w, Diff)
 }
@@ -103,6 +103,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						} else if resultCorrectLetter == false && tryWord == true {
 							fmt.Println("Choose: " + GameState.UserLetter)
 							GameState.Live -= 2
+							GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
 
 							if GameState.Live != 0 {
 								println()
@@ -131,16 +132,10 @@ func Game(w http.ResponseWriter, r *http.Request) {
 
 func Congratulation(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Congratulation")
-	if r.URL.Path != "/" {
-		http.Error(w, "404 not found.", http.StatusNotFound)
-		return
-	}
+
 }
 
 func Loser(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Loser")
-	if r.URL.Path != "/" {
-		http.Error(w, "404 not found.", http.StatusNotFound)
-		return
-	}
+
 }
