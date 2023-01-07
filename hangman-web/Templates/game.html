@@ -13,7 +13,7 @@
 
   <div class="div_gauche">
     <H1> {{range .Result}} {{.}} {{end}}</H1>
-    <p>You have {{ .Live }} attempts remaining</p>
+    <p class="live">You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
       <input type="text" id="Enter" name="Enter">
       <input type="submit" >

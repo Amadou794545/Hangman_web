@@ -4,15 +4,28 @@ body{
     height: 100vh;
     padding: 0;
     margin: 0;
-}
 
+}
 @font-face {
     font-family: japon;
     src:url('Japon.ttf');
 }
-a{
+#Easy{
     font-family: japon;
+    color: black;
+    src:url('Japon.ttf');
 }
+#Medium{
+    font-family: japon;
+    color: black;
+    src:url('Japon.ttf');
+}
+#Hard{
+    font-family: japon;
+    color: black;
+    src:url('Japon.ttf');
+}
+
 .buttoneasy{
     border: none;
     background-color: white;
@@ -28,12 +41,13 @@ a{
     top: 35%;
     left: 50%;
     transform: translateX(-50%);
+
 }
 .buttoneasy:hover{
 
 }
 
-.buttonmeduim{
+.buttonmedium{
     border: none;
     background-color: white;
     color: black;
@@ -53,7 +67,7 @@ a{
 
 }
 
-.buttondifficult{
+.buttonhard{
     border: none;
     background-color: white;
     color: black;
@@ -69,6 +83,6 @@ a{
     left: 50%;
     transform: translateX(-50%);
 }
-.buttondifficult:hover{
+.buttonhard:hover{
 
 }

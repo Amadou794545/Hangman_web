@@ -6,6 +6,11 @@ body{
     margin: 0;
 }
 
+@font-face {
+    font-family: japon;
+    src:url('Japon.ttf');
+}
+
 .div_principal{
     border: 15px ridge rgba(0,0,0,0%) ;
     display: flex;
@@ -17,21 +22,37 @@ body{
     flex: 1;
     text-align: left;
     background: deepskyblue;
+    font-family: japon;
+    color: black;
+    src:url('Japon.ttf');
+    opacity: 90%;
 }
 
 .div_droite{
     flex: 1;
     text-align: right;
     background: navajowhite;
+    opacity: 90%;
 }
 
 form {
     position: relative ;
-    top: 600px;
-    left: 210px;
+    top: 450px;
+    left: 200px;
 }
 H1{
     position: relative ;
     top: 150px;
     left: 250px;
+}
+
+.live{
+    position: relative;
+    top: 500px;
+    left: 0px;
+}
+
+img{
+    width : 600px;
+    height : 600px;
 }
