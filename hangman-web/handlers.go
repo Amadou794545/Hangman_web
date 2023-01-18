@@ -117,9 +117,8 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						GameState = modules.HangmanData{}
 					}
 					fmt.Printf("%d --> Nombre de vie restantes", GameState.Live)
-					if GameState.Live == 0 {
+					if GameState.Live == 0 || GameState.Live < 0 {
 						http.Redirect(w, r, "/Loser", http.StatusFound)
-						GameState = modules.HangmanData{}
 					}
 				} else {
 					GameState.BadInput = "Error : you can only put 1 letter or a word with the same number of letter than the word to search!!!!!!"
@@ -132,19 +131,18 @@ func Game(w http.ResponseWriter, r *http.Request) {
 
 func Congratulation(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Congratulation")
-
 }
 
 func Loser(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Loser")
 
 }
-func Connexion(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Connexion")
-}
 func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Scoreboard")
 }
 func Inscription(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Inscription")
+}
+func Connexion(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Connexion")
 }
