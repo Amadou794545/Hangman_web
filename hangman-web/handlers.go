@@ -139,3 +139,12 @@ func Loser(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Loser")
 
 }
+func Connexion(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Connexion")
+}
+func Scoreboard(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Scoreboard")
+}
+func Inscription(w http.ResponseWriter, r *http.Request) {
+	RenderTemplate(w, "Inscription")
+}

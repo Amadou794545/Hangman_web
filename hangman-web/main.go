@@ -8,11 +8,14 @@ const port = ":443"
 
 func main() {
 	http.HandleFunc("/", Start)
+	http.HandleFunc("/connexion", Connexion)
 	http.HandleFunc("/home", Home)
 	http.HandleFunc("/level", Level)
 	http.HandleFunc("/game", Game)
 	http.HandleFunc("/Congratulation", Congratulation)
 	http.HandleFunc("/Loser", Loser)
+	http.HandleFunc("/scoreboard", Scoreboard)
+	http.HandleFunc("/inscription", Inscription)
 
 	http.Handle("/Templates/", http.StripPrefix("/Templates/", http.FileServer(http.Dir("Templates"))))
 	http.Handle("/Assets/", http.StripPrefix("/Assets/", http.FileServer(http.Dir("Assets"))))
