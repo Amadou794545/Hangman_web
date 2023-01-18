@@ -1,35 +1,60 @@
 body{
-    background-image:url("https://i.pinimg.com/originals/b8/2f/28/b82f28a7e9c8fcb3868d3d94652c107c.gif");
+    background-image:url("https://hiepsibaotap.com/wp-content/uploads/2020/04/459654.jpg");
     background-size: cover;
     height: 100vh;
     padding: 0;
     margin: 0;
 
 }
+
+body .level {
+    background-image: linear-gradient(to left,black,white);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 150px;
+    font-family: defused;
+    position: relative;
+    top: 30px;
+    text-shadow: 0 0 0.2em white;
+    animation-duration: 7s;
+    animation-name: slidein;
+}
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }}
+
 @font-face {
-    font-family: japon;
-    src:url('Japon.ttf');
+    font-family: defused;
+    src:url('defused.ttf');
 }
 #Easy{
-    font-family: japon;
-    color: black;
-    src:url('Japon.ttf');
+    font-family: defused;
+    color: white;
+    src:url('defused.ttf');
 }
 #Medium{
-    font-family: japon;
-    color: black;
-    src:url('Japon.ttf');
+    font-family: defused;
+    color: white;
+    src:url('defused.ttf');
 }
 #Hard{
-    font-family: japon;
-    color: black;
-    src:url('Japon.ttf');
+    font-family: defused;
+    color: white;
+    src:url('defused.ttf');
 }
 
 .buttoneasy{
     border: none;
-    background-color: white;
-    color: black;
+    background-color: #212121;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -39,18 +64,18 @@ body{
     border-radius: 0;
     position: absolute;
     top: 35%;
-    left: 50%;
+    left: 12%;
     transform: translateX(-50%);
 
 }
 .buttoneasy:hover{
+    background-color: indianred;
 
 }
 
 .buttonmedium{
     border: none;
-    background-color: white;
-    color: black;
+    background-color: #212121;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -60,17 +85,16 @@ body{
     border-radius: 0;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 12%;
     transform: translateX(-50%);
 }
-.buttonmeduim:hover{
-
+.buttonmedium:hover{
+    background-color: indianred;
 }
 
 .buttonhard{
     border: none;
-    background-color: white;
-    color: black;
+    background-color: #212121;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -80,9 +104,9 @@ body{
     border-radius: 0;
     position: absolute;
     top: 65%;
-    left: 50%;
+    left: 12%;
     transform: translateX(-50%);
 }
 .buttonhard:hover{
-
+    background-color: indianred;
 }

@@ -1,5 +1,5 @@
 body{
-    background-image:url("https://i.pinimg.com/originals/b8/2f/28/b82f28a7e9c8fcb3868d3d94652c107c.gif");
+    background-image:url("https://hiepsibaotap.com/wp-content/uploads/2020/04/459654.jpg");
     background-size: cover;
     height: 100vh;
     padding: 0;
@@ -7,8 +7,8 @@ body{
 }
 
 @font-face {
-    font-family: japon;
-    src:url('Japon.ttf');
+    font-family: defused;
+    src:url('defused.ttf');
 }
 
 .div_principal{
@@ -21,7 +21,9 @@ body{
 .div_gauche{
     flex: 1;
     text-align: left;
-    background: deepskyblue;
+    /*background: deepskyblue;*/
+    background-color: #ffffff;
+    opacity: 0.4;
     font-family: japon;
     color: black;
     src:url('Japon.ttf');
@@ -31,7 +33,9 @@ body{
 .div_droite{
     flex: 1;
     text-align: right;
-    background: navajowhite;
+   /* background: navajowhite;*/
+    background-color: #ffffff;
+    opacity: 0.4;
     opacity: 90%;
 }
 
