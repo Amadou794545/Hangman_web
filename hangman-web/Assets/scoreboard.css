@@ -1,0 +1,83 @@
+body{
+    background-image: url("https://media.tenor.com/eTiopXSNQmwAAAAC/joel-tlou.gif");
+}
+@font-face {
+    font-family: defused;
+    src:url('../Assets/defused.ttf');
+}
+.tableau{
+    border-collapse: collapse;
+min-width: 400px;
+    width: auto;
+    box-shadow: 0 5px 50px rgba(0,0,0,0.15) ;
+    cursor: pointer;
+    margin: 100px auto;
+    border:1px solid darkolivegreen;
+    font-family: defused;
+}
+
+.level{
+    border: none;
+    background-color: #212121;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    transform: translateX(-50%);
+    font-family: defused;
+
+}
+.level:hover{
+    background-color: indianred;
+
+}
+
+thead tr {
+    background-color: #212121;
+    color: white;
+    text-align: left;
+    font-family: defused;
+
+}
+thead tr:hover{
+    background-color: indianred;
+}
+th,td{
+    padding: 15px 20px;
+    font-family: defused;
+
+}
+
+tbody,tr,td,th{
+    border: 1px solid white;
+    font-family: defused;
+color: white;
+}
+
+h1 {
+    animation-duration: 7s;
+    animation-name: slidein;
+    font-family: defused;
+    color: #dddddd;
+    position: relative;
+    top: 500px;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}

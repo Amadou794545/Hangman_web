@@ -15,7 +15,7 @@
     <H1> {{range .Result}} {{.}} {{end}}</H1>
     <p class="live">You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
-      <input type="text" id="Enter" name="Enter">
+      <input type="text" id="Enter" name="Enter" autofocus>
       <input type="submit" >
     </form>
     <H2>Letter or Word already used : {{range .UsedLW}} {{.}} {{end}}</H2>
@@ -34,11 +34,7 @@
   </div>
   <div class="div_droite">
     <img src="{{.Picture}}">
-
   </div>
-
 </div>
-
-
 </body>
 </html>
