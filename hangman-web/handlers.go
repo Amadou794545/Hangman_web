@@ -3,9 +3,34 @@ package main
 import (
 	"Hangman/modules"
 	"fmt"
+	uuid "github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 	"html/template"
 	"net/http"
+	"strconv"
+	"time"
+	"unicode"
 )
+
+type User struct {
+	gorm.Model
+	Username string `gorm:"type:varchar(255)"`
+	Password string `gorm:"type:varchar(255)"`
+	Sessions []Session
+}
+
+type Session struct {
+	gorm.Model
+	SessionID  uuid.UUID `gorm:"primary_key"`
+	UserID     int
+	Data       string `gorm:"type:text"`
+	CreatedAt  time.Time
+	LastAccess time.Time
+	ExpireAt   time.Time
+
+	User User `gorm:"association_foreignkey:UserID"`
+}
 
 type DiffStruc struct {
 	easy   string
@@ -21,8 +46,35 @@ var GameState modules.HangmanData
 var tryWord bool
 var resultCorrectLetter bool
 
+type Data struct {
+	User User
+	Diff DiffStruc
+}
+
 func Level(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("./Templates/level.html")
+	// Get the session ID from the cookie
+	cookie, err := r.Cookie("session_id")
+	if err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
+	sessionID, err := uuid.FromString(cookie.Value)
+	if err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
+
+	// Get the session from the database
+	var session Session
+	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
+	var user User
+	if err := db.Where("id = ?", session.UserID).First(&user).Error; err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
 	Diff.easy = r.FormValue("Easy")
 	Diff.medium = r.FormValue("Medium")
 	Diff.hard = r.FormValue("Hard")
@@ -42,7 +94,13 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/game", http.StatusFound)
 		GameState.Picture = "/Assets/HANGMAN0.png"
 	}
-	t.Execute(w, Diff)
+	data := Data{User: user, Diff: Diff}
+	fmt.Printf("BOOM")
+	err = tpl.ExecuteTemplate(w, "level.html", data)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func Start(w http.ResponseWriter, r *http.Request) {
@@ -141,8 +199,162 @@ func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Scoreboard")
 }
 func Inscription(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Inscription")
+	fmt.Println("*****registerAuthHandler running*****")
+	r.ParseForm()
+	//Destroy cookies --> Deconnexion
+	expiration := time.Now().AddDate(-1, 0, 0)
+	cookie := &http.Cookie{
+		Name:     "session_id",
+		Value:    "",
+		Path:     "/",
+		Expires:  expiration,
+		HttpOnly: true,
+	}
+	http.SetCookie(w, cookie)
+	username := r.FormValue("username")
+	// check password criteria
+	password := r.FormValue("password")
+	if username != "" && password != "" {
+		fmt.Println("password:", password, "\npswdLength:", len(password))
+		// variables that must pass for password creation criteria
+		var pswdLowercase, pswdUppercase, pswdNumber, pswdSpecial, pswdLength, pswdNoSpaces bool
+		pswdNoSpaces = true
+		for _, char := range password {
+			switch {
+			// func IsLower(r rune) bool
+			case unicode.IsLower(char):
+				pswdLowercase = true
+			// func IsUpper(r rune) bool
+			case unicode.IsUpper(char):
+				pswdUppercase = true
+			// func IsNumber(r rune) bool
+			case unicode.IsNumber(char):
+				pswdNumber = true
+			// func IsPunct(r rune) bool, func IsSymbol(r rune) bool
+			case unicode.IsPunct(char) || unicode.IsSymbol(char):
+				pswdSpecial = true
+			// func IsSpace(r rune) bool, type rune = int32
+			case unicode.IsSpace(int32(char)):
+				pswdNoSpaces = false
+			}
+		}
+		if 6 < len(password) && len(password) < 60 {
+			pswdLength = true
+		}
+		fmt.Println("pswdLowercase:", pswdLowercase)
+		fmt.Println("pswdUppercase:", pswdUppercase)
+		fmt.Println("pswdNumber:", pswdNumber)
+		fmt.Println("pswdSpecial:", pswdSpecial)
+		fmt.Println("pswdLength:", pswdLength)
+		fmt.Println("pswdNoSpaces:", pswdNoSpaces)
+
+		// check if username already exists in database
+		var users User
+		err := db.Where("username = ?", username).First(&users).Error
+		if err == nil {
+			tpl.ExecuteTemplate(w, "inscription.html", struct{ ErrorMessage string }{ErrorMessage: "username already exists"})
+			return
+		}
+
+		// check if password meets conditions
+		var errorMessage string
+		if !pswdLowercase {
+			errorMessage += "Error: password must contain at least one lowercase letter. "
+		}
+		if !pswdUppercase {
+			errorMessage += "Error: password must contain at least one uppercase letter. "
+		}
+		if !pswdNumber {
+			errorMessage += "Error: password must contain at least one number. "
+		}
+		if !pswdSpecial {
+			errorMessage += "Error: password must contain at least one special character. "
+		}
+		if !pswdLength {
+			errorMessage += "Error: password must be between 7 and 59 characters. "
+		}
+		if !pswdNoSpaces {
+			errorMessage += "Error: password cannot contain spaces. "
+		}
+		if errorMessage != "" {
+			tpl.ExecuteTemplate(w, "inscription.html", struct{ ErrorMessage string }{ErrorMessage: errorMessage})
+			return
+		}
+		// create bcrypt hash from password
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		if err != nil {
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+		// insert username and hashed password in database
+		users = User{Username: username, Password: string(hashedPassword)}
+		db.Create(&users)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+	}
+	tpl.ExecuteTemplate(w, "inscription.html", nil)
 }
+
 func Connexion(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Connexion")
+	// Get the form data
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+
+	//Destroy cookies --> Deconnexion
+	expiration := time.Now().AddDate(-1, 0, 0)
+	cookie := &http.Cookie{
+		Name:     "session_id",
+		Value:    "",
+		Path:     "/",
+		Expires:  expiration,
+		HttpOnly: true,
+	}
+	http.SetCookie(w, cookie)
+	// Check if username and password are not empty
+	if username != "" || password != "" {
+
+		// Get the user from the database
+		var user User
+		var errorMessage string
+		if err := db.Where("username = ?", username).First(&user).Error; err != nil {
+			if err != nil {
+				errorMessage = "Error: password cannot contain spaces. "
+			}
+		}
+
+		// Compare the bcrypt password
+		if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
+			if err != nil {
+				errorMessage = "Error: password cannot contain spaces. "
+			}
+		}
+		if errorMessage != "" {
+			tpl.ExecuteTemplate(w, "connexion.html", struct{ ErrorMessage string }{ErrorMessage: errorMessage})
+			return
+		}
+		// Create a new session
+		session := &Session{
+			SessionID:  uuid.NewV4(),
+			UserID:     int(user.ID),
+			Data:       strconv.Itoa(int(user.ID)),
+			CreatedAt:  time.Now(),
+			LastAccess: time.Now(),
+			ExpireAt:   time.Now().Add(24 * time.Hour),
+		}
+		if err := db.Save(&session).Error; err != nil {
+			http.Error(w, "Error creating session", http.StatusInternalServerError)
+			return
+		}
+
+		// Create a new cookie and set the session ID as the value
+		cookie := &http.Cookie{
+			Name:    "session_id",
+			Value:   session.SessionID.String(),
+			Expires: session.ExpireAt,
+		}
+		http.SetCookie(w, cookie)
+
+		// Redirect the user to the homepage
+		http.Redirect(w, r, "/level", http.StatusFound)
+	}
+	tpl.ExecuteTemplate(w, "connexion.html", nil)
 }

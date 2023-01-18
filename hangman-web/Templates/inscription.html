@@ -96,16 +96,16 @@
 </head>
 <body>
 <div class="registration-container">
-    <form action="/home" method="post" >
-      <label for="username">Username :</label>
-      <input type="text" id="username" name="username">
-      <label for="password">Password :</label>
-      <input type="password" id="password" name="password">
-     <label for="password">Password :</label>
-      <input type="password" id="password" name="password">
-      <input type="submit" value="login">
+    <form action="/inscription" method="POST">
+        <label for="username">Name:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Submit">
     </form>
-
+    {{if .ErrorMessage}}
+    <div class="error">{{.ErrorMessage}}</div>
+    {{end}}
 </div>
 <h1>SIGN UP NOW !!!!!</h1>
 </body>
