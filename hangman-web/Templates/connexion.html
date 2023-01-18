@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            background-image:url("https://i.gifer.com/64kr.gif");
+            background-size: cover;
+            height: 100vh;
+            padding:0;
+            margin-top:0;
+            font-family: defused;
+
+        }
+
+        .login-container {
+            width: 400px;
+            margin: 0;
+            background-color: gray;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+            font-family: defused;
+
+        }
+
+        @font-face {
+            font-family: defused;
+            src:url('../Assets/defused.ttf');
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: defused;
+
+        }
+
+        label {
+            width: 100%;
+            margin-bottom: 10px;
+            font-family: defused;
+
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: defused;
+
+        }
+
+        input[type="submit"] {
+           width: 100%;
+            background-color: #212121;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: defused;
+
+        }
+
+        input[type="submit"]:hover {
+            background-color: indianred;
+            font-family: defused;
+
+        }
+        h1 {
+            animation-duration: 7s;
+            animation-name: slidein;
+            font-family: defused;
+            color: #dddddd;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <form action="/home" method="post" >
+        <label for="username">Username :</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password :</label>
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+    <form action="/inscription" method="post">
+    <input type="submit" value="registration">
+</form>
+</div>
+<H1>LOGIN TO PLAY THE BEST YNOV GAME CREATED BY SEBASTIAN AND AMADOU</H1>
+</body>
+</html>
