@@ -2,9 +2,11 @@ module Hangman
 
 go 1.19
 
-require (
-	github.com/hajimehoshi/go-mp3 v0.3.3
-	github.com/hajimehoshi/oto/v2 v2.3.1
-)
+require gorm.io/gorm v1.24.3
 
-require golang.org/x/sys v0.0.0-20220712014510-0a85c31ab51e // indirect
+replace main => ../hangman-web
+
+require (
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
+)
