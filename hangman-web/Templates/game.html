@@ -13,13 +13,13 @@
 
 
   <div class="div_gauche">
-    <H1> {{range .Result}} {{.}} {{end}}</H1>
+    <H1> {{ .Result}}</H1>
     <p class="live">You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
       <input type="text" id="Enter" name="Enter" autofocus>
       <input type="submit" >
     </form>
-    <H2>Letter or Word already used : {{range .UsedLW}} {{.}} {{end}}</H2>
+    <H2>Letter or Word already used : {{ .UsedLW}}</H2>
     <p>
     {{ .AlreadyUsed }}
       <br>
