@@ -18,6 +18,7 @@ type User struct {
 	Username string `gorm:"type:varchar(255)"`
 	Password string `gorm:"type:varchar(255)"`
 	Sessions []Session
+	Hangman  []HangmanData
 }
 
 type Session struct {
@@ -32,11 +33,22 @@ type Session struct {
 	User User `gorm:"association_foreignkey:UserID"`
 }
 
-type DiffStruc struct {
-	easy   string
-	medium string
-	hard   string
-	Reveal []string
+type HangmanData struct {
+	gorm.Model
+	UserID        int    `gorm:"column:user_id"`
+	Live          int    `gorm:"type:int"`
+	Word          string `gorm:"type:varchar(255)"`
+	Result        string `gorm:"type:varchar(255)"`
+	UsedLW        string `gorm:"type:varchar(255)"`
+	Index         string `gorm:"type:varchar(255)"`
+	UserLetter    string `gorm:"type:varchar(255)"`
+	Picture       string `gorm:"type:varchar(255)"`
+	AlreadyUsed   string `gorm:"type:varchar(255)"`
+	BadInput      string `gorm:"type:varchar(255)"`
+	OnlyLowerCase string `gorm:"type:varchar(255)"`
+	Reveal        string `gorm:"type:varchar(255)"`
+	GCompleted    string `gorm:"type:varchar(255)"`
+	User          User   `gorm:"association_foreignkey:UserID"`
 }
 
 var Diff DiffStruc
