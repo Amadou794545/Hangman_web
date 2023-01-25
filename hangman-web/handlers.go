@@ -346,22 +346,22 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 		// check if password meets conditions
 		var errorMessage string
 		if !pswdLowercase {
-			errorMessage += "Error: password must contain at least one lowercase letter. "
+			errorMessage += "Error: password must contain at least one lowercase letter. \n"
 		}
 		if !pswdUppercase {
-			errorMessage += "Error: password must contain at least one uppercase letter. "
+			errorMessage += "Error: password must contain at least one uppercase letter. \n"
 		}
 		if !pswdNumber {
-			errorMessage += "Error: password must contain at least one number. "
+			errorMessage += "Error: password must contain at least one number. \n"
 		}
 		if !pswdSpecial {
-			errorMessage += "Error: password must contain at least one special character. "
+			errorMessage += "Error: password must contain at least one special character. \n"
 		}
 		if !pswdLength {
-			errorMessage += "Error: password must be between 7 and 59 characters. "
+			errorMessage += "Error: password must be between 7 and 59 characters. \n"
 		}
 		if !pswdNoSpaces {
-			errorMessage += "Error: password cannot contain spaces. "
+			errorMessage += "Error: password cannot contain spaces. \n"
 		}
 		if errorMessage != "" {
 			tpl.ExecuteTemplate(w, "inscription.html", struct{ ErrorMessage string }{ErrorMessage: errorMessage})
