@@ -104,7 +104,7 @@ func Level(w http.ResponseWriter, r *http.Request) {
 	hard := r.FormValue("Hard")
 	if easy != "" {
 		Difficulty(easy, &GameState)
-		GameState.Picture = "/Assets/HANGMAN0.png"
+		GameState.Picture = "/Assets/zombie.png"
 		GameState.UserID = session.UserID
 		GameState.Elapsed = 0
 		if err := db.Create(&GameState).Error; err != nil {
@@ -113,7 +113,7 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/game", http.StatusFound)
 	} else if medium != "" {
 		Difficulty(medium, &GameState)
-		GameState.Picture = "/Assets/HANGMAN0.png"
+		GameState.Picture = "/Assets/zombie.png"
 		GameState.UserID = session.UserID
 		GameState.Elapsed = 0
 		if err := db.Create(&GameState).Error; err != nil {
@@ -122,7 +122,7 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/game", http.StatusFound)
 	} else if hard != "" {
 		Difficulty(hard, &GameState)
-		GameState.Picture = "/Assets/HANGMAN0.png"
+		GameState.Picture = "/Assets/zombie.png"
 		GameState.UserID = session.UserID
 		GameState.Elapsed = 0
 		if err := db.Create(&GameState).Error; err != nil {
