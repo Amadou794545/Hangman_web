@@ -1,7 +1,7 @@
 package modules
 
-func TryLetter(letter, word string) ([]int, bool) { // Function to try the letter chose by the user
-	var indexTab []int
+func TryLetter(letter, word string) (string, bool) { // Function to try the letter chose by the user
+	var indexTab string
 	var tryWord bool // true == it's word ; false it's a letter
 	if len(letter) == len(word) {
 		tryWord = true
@@ -11,13 +11,13 @@ func TryLetter(letter, word string) ([]int, bool) { // Function to try the lette
 	if len(letter) == 1 {
 		for i := 0; i < len(word); i++ {
 			if letter[0] == word[i] {
-				indexTab = append(indexTab, i)
+				indexTab = indexTab + string(rune(i+33))
 			}
 		}
 	} else {
 		for i := 0; i < len(word); i++ {
 			if letter == word {
-				indexTab = append(indexTab, i)
+				indexTab = indexTab + string(rune(i+33))
 			}
 		}
 	}

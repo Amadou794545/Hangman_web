@@ -4,8 +4,48 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="Hangman(#1): &#10;&#10;Modify function Repetition Askletter&#10;To answer to all my problems">
+    <list default="true" id="d7098fec-20cc-42e9-b647-e410980beed5" name="Changes" comment="hangmancore(#1): &#10;&#10;Add account + cookies + sessions + struc from database">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/AnimOrPicture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/HistoirePicture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/ISaidComeBackNow.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Pilot.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Pilote.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/ReglesPicture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene10Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene10Picture2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene1Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene2Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene3Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene4Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene5Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene6Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene7Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene8Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/Scene9Picture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/SceneFinalDefaitePicture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/SceneFinalVictoirePicture.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/Picture/StormTrooper.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/AsciiArt.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/ExitCommand.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Hangman.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Inputword.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Repetition.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Repetition.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/RevealLetter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/TestFinish.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/TestFinish.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/TryLetter.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/TryLetter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-classic/modules/Updateresult.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-classic/modules/Updateresult.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/Difficulty.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Difficulty.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/PrintJose.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/PrintJose.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/connexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/connexion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/Templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/Templates/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/database.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hangman-web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hangman-web/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/hangman-web/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +64,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="HangmanCore" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,6 +100,7 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\THOLLARD\Documents\Hangman\HANGMAN\hangman-web" />
+      <recent name="C:\Users\THOLLARD\Documents\Hangman\HANGMAN\hangman-web\Shared" />
       <recent name="C:\Users\THOLLARD\Documents\Hangman\HANGMAN\hangman-web\Templates" />
       <recent name="C:\Users\THOLLARD\Documents\Hangman\HANGMAN" />
     </key>

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gorilla/sessions"
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"html/template"
 	"net/http"
@@ -18,11 +18,12 @@ var store = sessions.NewCookieStore([]byte("super-secret-password"))
 func main() {
 	tpl, _ = template.ParseGlob("Templates/*.html")
 	var err error
-	db, err = gorm.Open(sqlite.Open("database.db"), &gorm.Config{})
+	dsn := "host=localhost user=postgres password=123 dbname=postgres port=5432 sslmode=disable TimeZone=Europe/Paris"
+	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err.Error())
 	}
-	db.AutoMigrate(&User{}, &Session{})
+	db.AutoMigrate(&User{}, &Session{}, &HangmanData{})
 	http.HandleFunc("/", Start)
 	http.HandleFunc("/connexion", Connexion)
 	http.HandleFunc("/home", Home)

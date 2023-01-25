@@ -1,34 +1,48 @@
 package modules
 
-func Repetition(revealW bool, GameState *HangmanData) bool {
+import (
+	"strings"
+)
+
+func Repetition(revealW bool, UsedLW string, UserLetter string, AlreadyUsed string, Result string) (bool, string, string, string, string) {
 	var countLetterAlreadyUsed int
 	if revealW == false {
-		for _, usedLW := range GameState.UsedLW {
-			if GameState.UserLetter == usedLW {
-				GameState.AlreadyUsed = "You already used this, check the list of already used input !!"
-				return true // Already used
+		usedWords := strings.Split(UsedLW, ",")
+		found := false
+		for _, word := range usedWords {
+			if word == UserLetter {
+				found = true
+				break
 			}
 		}
-		GameState.UsedLW = append(GameState.UsedLW, GameState.UserLetter)
-		GameState.AlreadyUsed = ""
-		return false // Not already used
+		if found {
+			AlreadyUsed = "You already used this, check the list of already used input !!"
+			return true, UsedLW, UserLetter, AlreadyUsed, Result // Already used
+		}
+		UsedLW = UsedLW + UserLetter
+		UsedLW = UsedLW + ","
+		AlreadyUsed = ""
+		return false, UsedLW, UserLetter, AlreadyUsed, Result // Not already used
 	} else { // Add letter from the reveal
-		for _, word := range GameState.Result {
+		for _, word := range Result {
 			countLetterAlreadyUsed = 0
-			if word != "_" && GameState.UsedLW != nil { // diff from nil because at start it's equal NIL
-				for _, usedLetter := range GameState.UsedLW {
+			if string(word) != "_" && UsedLW != "" { // diff from nil because at start it's equal NIL
+				for _, usedLetter := range UsedLW {
 					if word == usedLetter {
 						countLetterAlreadyUsed += 1
 					}
 				}
 				if countLetterAlreadyUsed == 0 {
-					GameState.UsedLW = append(GameState.UsedLW, word)
+					UsedLW = UsedLW + string(word)
+					UsedLW = UsedLW + ","
+
 				}
 			}
-			if word != "_" && GameState.UsedLW == nil {
-				GameState.UsedLW = append(GameState.UsedLW, word)
+			if string(word) != "_" && UsedLW == "" {
+				UsedLW = UsedLW + string(word)
+				UsedLW = UsedLW + ","
 			}
 		}
-		return false
+		return false, UsedLW, UserLetter, AlreadyUsed, Result
 	}
 }
