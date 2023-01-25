@@ -1,5 +1,5 @@
 body{
-background-color: #0b0b17 ;
+background-color: black ;
     background-size: cover;
     height: 100vh;
     padding: 0;
@@ -21,10 +21,10 @@ background-color: #0b0b17 ;
 .div_gauche{
     flex: 1;
     text-align: left;
-    background-color: #ffffff;
+    background-color: black;
     opacity: 0.4;
     font-family: defused;
-    color: black;
+    color: white;
     src:url('defused.ttf');
     opacity: 90%;
 }
@@ -56,8 +56,8 @@ H1{
 
 
 img{
-    width : 600px;
-    height : 600px;
+    width : 100vh;
+    height : 100vh;
 }
 
 input{
