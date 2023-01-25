@@ -1,15 +1,14 @@
 package modules
 
 import (
-	"fmt"
 	"math/rand"
 	"time"
 )
 
-func RevealLetter(word string, GameState *HangmanData) { // Function to reveal random letters depending on the difficulty
-	var finalPrint []string
+func RevealLetter(word string, Result string) string { // Function to reveal random letters depending on the difficulty
+	var finalPrint string
 	for i := 0; i < len(word); i++ { // The final print is full of underscore
-		finalPrint = append(finalPrint, "_")
+		finalPrint = finalPrint + "_"
 	}
 	nbLetterToReveal := len(word)/2 - 1
 	var possibleLetter []string
@@ -47,7 +46,9 @@ func RevealLetter(word string, GameState *HangmanData) { // Function to reveal r
 		if randomChar != "0" && nextTest >= 0 { // Swap letter with the underscore in the final print
 			nbLetterToReveal -= len(indexTab)
 			for i := 0; i < len(indexTab); i++ {
-				finalPrint[indexTab[i]] = randomChar
+				runes := []rune(finalPrint)
+				runes[indexTab[i]] = []rune(randomChar)[0]
+				finalPrint = string(runes)
 			}
 			for i := 0; i < len(possibleLetter); i++ { // If the letter is swapped, the possibleLetter become a zero
 				if randomChar == possibleLetter[i] {
@@ -56,7 +57,6 @@ func RevealLetter(word string, GameState *HangmanData) { // Function to reveal r
 			}
 		}
 	}
-	GameState.Result = finalPrint
-	Repetition(true, GameState)
-	fmt.Printf("1 %s", GameState.Result)
+	Result = finalPrint
+	return Result
 }

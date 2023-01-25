@@ -1,12 +1,15 @@
 package modules
 
-func UpdateResult(letter string, index []int, tryWord bool, result []string) ([]string, bool) {
+func UpdateResult(letter string, index string, tryWord bool, result string) (string, bool) {
 	if tryWord == false {
-		if index == nil { // If the index is empty return same result and false (letter)
+		if index == "" { // If the index is empty return same result and false (letter)
 			return result, false
 		} else { // Put the letter on his index position and return true (letter)
 			for i := 0; i < len(index); i++ {
-				result[index[i]] = letter
+				idx := int(index[i]) - 33
+				resultRune := []rune(result)
+				resultRune[idx] = []rune(letter)[0]
+				result = string(resultRune)
 			}
 		}
 		return result, true
@@ -15,7 +18,10 @@ func UpdateResult(letter string, index []int, tryWord bool, result []string) ([]
 			return result, false
 		} else {
 			for i := 0; i < len(index); i++ {
-				result[i] = string(letter[i])
+				idx := int(index[i]) - 33
+				resultRune := []rune(result)
+				resultRune[idx] = []rune(letter)[i]
+				result = string(resultRune)
 			}
 			return result, true
 		}
