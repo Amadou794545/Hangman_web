@@ -24,6 +24,7 @@ require (
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/lib/pq v1.1.1 // indirect
 	github.com/mattn/go-sqlite3 v1.14.15 // indirect
+	golang.org/x/net v0.5.0 // indirect
 	golang.org/x/text v0.6.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gorm.io/driver/postgres v1.4.6 // indirect

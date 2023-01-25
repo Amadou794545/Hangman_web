@@ -2,6 +2,7 @@ package main
 
 import (
 	"Hangman/modules"
+	"fmt"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -47,7 +48,17 @@ type HangmanData struct {
 	OnlyLowerCase string `gorm:"type:varchar(255)"`
 	Reveal        string `gorm:"type:varchar(255)"`
 	GCompleted    string `gorm:"type:varchar(255)"`
-	User          User   `gorm:"association_foreignkey:UserID"`
+	StartTime     time.Time
+	Elapsed       float64 `gorm:"type:int"`
+	User          User    `gorm:"association_foreignkey:UserID"`
+}
+
+type ScoreBoard struct {
+	gorm.Model
+	UserID   int    `gorm:"column:user_id"`
+	Username string `gorm:"type:varchar(255)"`
+	Score    string `gorm:"type:int"`
+	User     User   `gorm:"association_foreignkey:UserID"`
 }
 
 var tryWord bool
@@ -95,21 +106,28 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		Difficulty(easy, &GameState)
 		GameState.Picture = "/Assets/HANGMAN0.png"
 		GameState.UserID = session.UserID
+		GameState.Elapsed = 0
 		if err := db.Create(&GameState).Error; err != nil {
-			http.Error(w, "Invalid NOOB", http.StatusUnauthorized)
+			http.Error(w, "Impossible to create DataBase", http.StatusUnauthorized)
 		}
 		http.Redirect(w, r, "/game", http.StatusFound)
 	} else if medium != "" {
 		Difficulty(medium, &GameState)
 		GameState.Picture = "/Assets/HANGMAN0.png"
 		GameState.UserID = session.UserID
-		db.Create(&GameState)
+		GameState.Elapsed = 0
+		if err := db.Create(&GameState).Error; err != nil {
+			http.Error(w, "Impossible to create DataBase", http.StatusUnauthorized)
+		}
 		http.Redirect(w, r, "/game", http.StatusFound)
 	} else if hard != "" {
 		Difficulty(hard, &GameState)
 		GameState.Picture = "/Assets/HANGMAN0.png"
 		GameState.UserID = session.UserID
-		db.Create(&GameState)
+		GameState.Elapsed = 0
+		if err := db.Create(&GameState).Error; err != nil {
+			http.Error(w, "Impossible to create DataBase", http.StatusUnauthorized)
+		}
 		http.Redirect(w, r, "/game", http.StatusFound)
 	}
 	data := Data{User: user}
@@ -203,23 +221,50 @@ func Game(w http.ResponseWriter, r *http.Request) {
 							GameState.Live -= 1
 							db.Save(&GameState)
 							GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+							elapsed := time.Now()
+							diff := elapsed.Sub(GameState.StartTime)
+							fmt.Printf("Ici the time : %f \n", diff.Seconds())
+							GameState.Elapsed += diff.Seconds()
 							db.Save(&GameState)
 						} else if resultCorrectLetter == false && tryWord == true {
 							GameState.Live -= 2
 							db.Save(&GameState)
-							GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+							elapsed := time.Now()
+							diff := elapsed.Sub(GameState.StartTime)
+							fmt.Printf("Ici the time : %f \n", diff.Seconds())
+							GameState.Elapsed += diff.Seconds()
 							db.Save(&GameState)
 						}
+
 					}
-					if modules.TestFinish(GameState.Result) == true {
+					if modules.TestFinish(GameState.Result) == true { // Winner
 						GameState.GCompleted = "true"
+						GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+						elapsed := time.Now()
+						diff := elapsed.Sub(GameState.StartTime)
+						fmt.Printf("Ici the time : %f \n", diff.Seconds())
+						GameState.Elapsed += diff.Seconds()
 						db.Save(&GameState)
+						var score ScoreBoard
+						if err := db.Where("id = ?", session.UserID).First(&score).Error; err != nil {
+							http.Error(w, "Invalid session", http.StatusUnauthorized)
+							return
+						}
 						http.Redirect(w, r, "Congratulation", http.StatusFound)
-						GameState = HangmanData{}
 					}
-					if GameState.Live == 0 || GameState.Live < 0 {
+					if GameState.Live == 0 || GameState.Live < 0 { // Loser
 						GameState.GCompleted = "true"
+						GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+						elapsed := time.Now()
+						diff := elapsed.Sub(GameState.StartTime)
+						fmt.Printf("Ici the time : %f \n", diff.Seconds())
+						GameState.Elapsed += diff.Seconds()
 						db.Save(&GameState)
+						var score ScoreBoard
+						if err := db.Where("id = ?", session.UserID).First(&score).Error; err != nil {
+							http.Error(w, "Invalid session", http.StatusUnauthorized)
+							return
+						}
 						http.Redirect(w, r, "/Loser", http.StatusFound)
 					}
 				} else {
@@ -228,7 +273,13 @@ func Game(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		}
+		elapsed := time.Now()
+		diff := elapsed.Sub(GameState.StartTime)
+		fmt.Printf("Ici the time : %f \n", diff.Seconds())
+		GameState.Elapsed += diff.Seconds()
 	}
+	GameState.StartTime = time.Now()
+	db.Save(&GameState)
 	t.Execute(w, GameState)
 }
 

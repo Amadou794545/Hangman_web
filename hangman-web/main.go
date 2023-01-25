@@ -23,7 +23,7 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	db.AutoMigrate(&User{}, &Session{}, &HangmanData{})
+	db.AutoMigrate(&User{}, &Session{}, &HangmanData{}, &ScoreBoard{})
 	http.HandleFunc("/", Start)
 	http.HandleFunc("/connexion", Connexion)
 	http.HandleFunc("/home", Home)
