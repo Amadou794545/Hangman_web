@@ -12,7 +12,8 @@ min-width: 100vh;
     box-shadow: 0 5px 50px rgba(0,0,0,0.15) ;
     position: relative;
     cursor: pointer;
-    margin-top: -10vh ;
+    margin-left: 105vh;
+    margin-top: -10vh;
     border:1px solid darkolivegreen;
     font-family: defused;
 }
@@ -30,7 +31,7 @@ min-width: 100vh;
     border-radius: 0;
     position: absolute;
     top: 10vh;
-    left: 180vh;
+    left: 15vh;
     transform: translateX(-50%);
     font-family: defused;
 
