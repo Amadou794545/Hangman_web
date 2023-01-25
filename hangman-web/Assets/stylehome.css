@@ -12,10 +12,10 @@ body .hangman {
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-size: 150px;
+    font-size: 25vh;
     font-family: defused;
     position: relative;
-    top: 30px;
+    top: 0vh;
     text-shadow: 0 0 0.2em white;
     animation-duration: 7s;
     animation-name: slidein;
@@ -50,12 +50,12 @@ color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 35px;
+    font-size: 5vh;
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    top: 40%;
-    left: 12%;
+    top: 40vh;
+    left: 100vh;
     transform: translateX(-50%);
 }
 .buttongame:hover{
@@ -74,8 +74,8 @@ color: white;
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    top: 55%;
-    left: 12%;
+    top: 55vh;
+    left: 100vh;
     transform: translateX(-50%);
 }
 .buttonmultiplayer:hover{

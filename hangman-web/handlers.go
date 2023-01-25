@@ -2,7 +2,6 @@ package main
 
 import (
 	"Hangman/modules"
-	"fmt"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -51,16 +50,12 @@ type HangmanData struct {
 	User          User   `gorm:"association_foreignkey:UserID"`
 }
 
-var Diff DiffStruc
-
-var GameState modules.HangmanData
-
 var tryWord bool
 var resultCorrectLetter bool
 
 type Data struct {
-	User User
-	Diff DiffStruc
+	User      User
+	GameState HangmanData
 }
 
 func Level(w http.ResponseWriter, r *http.Request) {
@@ -83,31 +78,41 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var user User
+	var GameState HangmanData
+	if err := db.Where("user_id = ? and g_completed = ? and live > ?", session.UserID, "false", 0).First(&GameState).Error; err == nil {
+		http.Redirect(w, r, "/game", http.StatusFound)
+		return
+	}
+
 	if err := db.Where("id = ?", session.UserID).First(&user).Error; err != nil {
 		http.Error(w, "Invalid session", http.StatusUnauthorized)
 		return
 	}
-	Diff.easy = r.FormValue("Easy")
-	Diff.medium = r.FormValue("Medium")
-	Diff.hard = r.FormValue("Hard")
-	if Diff.easy != "" {
-		fmt.Printf("Easy --> Activate")
-		Difficulty(Diff.easy, &GameState)
-		http.Redirect(w, r, "/game", http.StatusFound)
+	easy := r.FormValue("Easy")
+	medium := r.FormValue("Medium")
+	hard := r.FormValue("Hard")
+	if easy != "" {
+		Difficulty(easy, &GameState)
 		GameState.Picture = "/Assets/HANGMAN0.png"
-	} else if Diff.medium != "" {
-		fmt.Printf("Medium --> Activate")
-		Difficulty(Diff.medium, &GameState)
+		GameState.UserID = session.UserID
+		if err := db.Create(&GameState).Error; err != nil {
+			http.Error(w, "Invalid NOOB", http.StatusUnauthorized)
+		}
 		http.Redirect(w, r, "/game", http.StatusFound)
+	} else if medium != "" {
+		Difficulty(medium, &GameState)
 		GameState.Picture = "/Assets/HANGMAN0.png"
-	} else if Diff.hard != "" {
-		fmt.Printf("Hard --> Activate")
-		Difficulty(Diff.hard, &GameState)
+		GameState.UserID = session.UserID
+		db.Create(&GameState)
 		http.Redirect(w, r, "/game", http.StatusFound)
+	} else if hard != "" {
+		Difficulty(hard, &GameState)
 		GameState.Picture = "/Assets/HANGMAN0.png"
+		GameState.UserID = session.UserID
+		db.Create(&GameState)
+		http.Redirect(w, r, "/game", http.StatusFound)
 	}
-	data := Data{User: user, Diff: Diff}
-	fmt.Printf("BOOM")
+	data := Data{User: user}
 	err = tpl.ExecuteTemplate(w, "level.html", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -138,60 +143,88 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func Game(w http.ResponseWriter, r *http.Request) {
+	// Get the session ID from the cookie
+	cookie, err := r.Cookie("session_id")
+	if err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
+	sessionID, err := uuid.FromString(cookie.Value)
+	if err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
+	// Get the session from the database
+	var session Session
+	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
+	var user User
+
+	var GameState HangmanData
+	if err := db.Where("user_id = ? and g_completed = ? and live > ?", session.UserID, "false", 0).First(&GameState).Error; err != nil {
+		http.Error(w, "No Data", http.StatusUnauthorized)
+		return
+	}
+	if err := db.Where("id = ?", session.UserID).First(&user).Error; err != nil {
+		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		return
+	}
 	t, err := template.ParseFiles("./Templates/game.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	GameState.GCompleted = "false"
 	GameState.UserLetter = r.FormValue("Enter")
+	db.Save(&GameState)
 	if GameState.UserLetter != "" {
 		if GameState.Live > 0 {
-			fmt.Printf("%s --> UserLetter\n", GameState.UserLetter)
-			fmt.Printf("%s --> Result\n", GameState.Result)
 			GameState.OnlyLowerCase = ""
 			GameState.BadInput = ""
+			db.Save(&GameState)
 			for _, letter := range GameState.UserLetter {
 				if string(letter) < "a" || string(letter) > "z" {
 					GameState.OnlyLowerCase = "Error : you can only chose lowercase characters for Hangman"
 				}
 			}
+			db.Save(&GameState)
 			if GameState.OnlyLowerCase == "" {
 				if len(GameState.UserLetter) == 1 || len(GameState.UserLetter) == len(GameState.Word) {
-					if modules.Repetition(false, &GameState) == false {
+					var try bool
+					try, GameState.UsedLW, GameState.UserLetter, GameState.AlreadyUsed, GameState.Result = modules.Repetition(false, GameState.UsedLW, GameState.UserLetter, GameState.AlreadyUsed, GameState.Result)
+					db.Save(&GameState)
+					if try == false {
 						GameState.Index, tryWord = modules.TryLetter(GameState.UserLetter, GameState.Word)
 						GameState.Result, resultCorrectLetter = modules.UpdateResult(GameState.UserLetter, GameState.Index, tryWord, GameState.Result)
-
+						db.Save(&GameState)
 						if resultCorrectLetter == false && tryWord == false {
-							fmt.Println("Choose: " + GameState.UserLetter)
 							GameState.Live -= 1
+							db.Save(&GameState)
 							GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
-							if GameState.Live != 0 {
-								println()
-								println("Not present in the word, " + string(rune(GameState.Live)+48) + " attempts remaining")
-							}
-							// Bad word, Print hangman
+							db.Save(&GameState)
 						} else if resultCorrectLetter == false && tryWord == true {
-							fmt.Println("Choose: " + GameState.UserLetter)
 							GameState.Live -= 2
+							db.Save(&GameState)
 							GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
-
-							if GameState.Live != 0 {
-								println()
-								println("It's not the good word, " + string(rune(GameState.Live)+48) + " attempts remaining")
-							}
-						} else { // Good letter or word
+							db.Save(&GameState)
 						}
 					}
 					if modules.TestFinish(GameState.Result) == true {
+						GameState.GCompleted = "true"
+						db.Save(&GameState)
 						http.Redirect(w, r, "Congratulation", http.StatusFound)
-						GameState = modules.HangmanData{}
+						GameState = HangmanData{}
 					}
-					fmt.Printf("%d --> Nombre de vie restantes", GameState.Live)
 					if GameState.Live == 0 || GameState.Live < 0 {
+						GameState.GCompleted = "true"
+						db.Save(&GameState)
 						http.Redirect(w, r, "/Loser", http.StatusFound)
 					}
 				} else {
 					GameState.BadInput = "Error : you can only put 1 letter or a word with the same number of letter than the word to search!!!!!!"
+					db.Save(&GameState)
 				}
 			}
 		}
@@ -211,7 +244,6 @@ func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Scoreboard")
 }
 func Inscription(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("*****registerAuthHandler running*****")
 	r.ParseForm()
 	//Destroy cookies --> Deconnexion
 	expiration := time.Now().AddDate(-1, 0, 0)
@@ -227,7 +259,6 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 	// check password criteria
 	password := r.FormValue("password")
 	if username != "" && password != "" {
-		fmt.Println("password:", password, "\npswdLength:", len(password))
 		// variables that must pass for password creation criteria
 		var pswdLowercase, pswdUppercase, pswdNumber, pswdSpecial, pswdLength, pswdNoSpaces bool
 		pswdNoSpaces = true
@@ -253,13 +284,6 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 		if 6 < len(password) && len(password) < 60 {
 			pswdLength = true
 		}
-		fmt.Println("pswdLowercase:", pswdLowercase)
-		fmt.Println("pswdUppercase:", pswdUppercase)
-		fmt.Println("pswdNumber:", pswdNumber)
-		fmt.Println("pswdSpecial:", pswdSpecial)
-		fmt.Println("pswdLength:", pswdLength)
-		fmt.Println("pswdNoSpaces:", pswdNoSpaces)
-
 		// check if username already exists in database
 		var users User
 		err := db.Where("username = ?", username).First(&users).Error
@@ -301,7 +325,7 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 		// insert username and hashed password in database
 		users = User{Username: username, Password: string(hashedPassword)}
 		db.Create(&users)
-		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		http.Redirect(w, r, "../connexion", http.StatusSeeOther)
 	}
 	tpl.ExecuteTemplate(w, "inscription.html", nil)
 }
@@ -366,7 +390,7 @@ func Connexion(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, cookie)
 
 		// Redirect the user to the homepage
-		http.Redirect(w, r, "/level", http.StatusFound)
+		http.Redirect(w, r, "../level", http.StatusFound)
 	}
 	tpl.ExecuteTemplate(w, "connexion.html", nil)
 }
