@@ -11,7 +11,7 @@
 <div class="div_principal">
   <div class="div_gauche">
     <H1> {{ .Result}}</H1>
-    <p class="live">You have {{ .Live }} attempts remaining</p>
+     <p class="live">You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
       <input type="text" id="Enter" name="Enter" autofocus>
       <input type="submit" >
@@ -29,7 +29,7 @@
       {{ .BadInput }}
       <br>
     </p>
-  </div>
+   </div>
   <div class="div_droite">
     <img src="{{.Picture}}">
   </div>

@@ -23,9 +23,7 @@ background-color: black ;
     text-align: left;
     background-color: black;
     opacity: 0.4;
-    font-family: defused;
     color: white;
-    src:url('defused.ttf');
     opacity: 90%;
 }
 
@@ -39,27 +37,53 @@ background-color: black ;
 
 form {
     position: relative ;
-    top: 450px;
-    left: 200px;
+    font-family: defused;
+    margin-top: 50vh;
+    src:url('defused.ttf');
+
 }
 H1{
     position: relative ;
-    top: 150px;
-    left: 250px;
+    top: -5vh;
+    left: 15vh;
+    font-size: 11vh;
 }
 
 .live{
     position: relative;
-    top: 500px;
-    left: 0px;
+    margin-top: 15vh;
+    margin-left: 0vh;
+    font-family: defused;
 }
 
 
 img{
     width : 100vh;
-    height : 100vh;
+    height : 70vh;
+}
+
+
+h2{
+    margin-top: -50vh;
+    margin-left: 0vh;
+    font-family: defused;
+
 }
 
 input{
-    margin-top: 20vh;
+    src:url('defused.ttf');
+    font-family: defused;
+    margin-top: 0vh;
+}
+p {
+    font-family: defused;
+}
+
+input[type=text]{
+    background-color: black;
+    border: 4px solid white;
+    border-radius: 5px;
+}
+input[type=text]:hover{
+    background-color: #cccccc;
 }
