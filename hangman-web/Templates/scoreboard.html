@@ -7,7 +7,14 @@
 
 
 </head>
-<body>
+<body><audio autoplay id="myaudio">
+  <source src="/Music/Theme-Scoreboard.mp3">
+</audio>
+
+<script>
+  var audio = document.getElementById("myaudio");
+  audio.volume = 0.1;
+</script>
 <a class="reset"  href="/level" title="Vous ne le regretterez pas"><strong>RESET</strong></a>
 
 <table class="tableau">

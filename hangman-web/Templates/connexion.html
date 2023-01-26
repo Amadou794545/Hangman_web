@@ -107,6 +107,14 @@
     </style>
 </head>
 <body>
+<audio autoplay id="myaudio">
+    <source src="/Music/Hunter-Connex.mp3">
+</audio>
+
+<script>
+    var audio = document.getElementById("myaudio");
+    audio.volume = 0.1;
+</script>
 <h1>{{.ErrorMessage}}</h1>
 <div class="login-container">
     <form action="/connexion" method="post" >

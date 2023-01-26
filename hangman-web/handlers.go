@@ -35,29 +35,30 @@ type Session struct {
 
 type HangmanData struct {
 	gorm.Model
-	UserID        int    `gorm:"column:user_id"`
-	Live          int    `gorm:"type:int"`
-	Word          string `gorm:"type:varchar(255)"`
-	Result        string `gorm:"type:varchar(255)"`
-	UsedLW        string `gorm:"type:varchar(255)"`
-	Index         string `gorm:"type:varchar(255)"`
-	UserLetter    string `gorm:"type:varchar(255)"`
-	Picture       string `gorm:"type:varchar(255)"`
-	AlreadyUsed   string `gorm:"type:varchar(255)"`
-	BadInput      string `gorm:"type:varchar(255)"`
-	OnlyLowerCase string `gorm:"type:varchar(255)"`
-	Reveal        string `gorm:"type:varchar(255)"`
-	GCompleted    string `gorm:"type:varchar(255)"`
-	StartTime     time.Time
-	Elapsed       float64 `gorm:"type:int"`
-	User          User    `gorm:"association_foreignkey:UserID"`
+	UserID         int    `gorm:"column:user_id"`
+	Live           int    `gorm:"type:int"`
+	GameDifficulty string `gorm:"type:varchar(255)"`
+	Word           string `gorm:"type:varchar(255)"`
+	Result         string `gorm:"type:varchar(255)"`
+	UsedLW         string `gorm:"type:varchar(255)"`
+	Index          string `gorm:"type:varchar(255)"`
+	UserLetter     string `gorm:"type:varchar(255)"`
+	Picture        string `gorm:"type:varchar(255)"`
+	AlreadyUsed    string `gorm:"type:varchar(255)"`
+	BadInput       string `gorm:"type:varchar(255)"`
+	OnlyLowerCase  string `gorm:"type:varchar(255)"`
+	Reveal         string `gorm:"type:varchar(255)"`
+	GCompleted     string `gorm:"type:varchar(255)"`
+	StartTime      time.Time
+	Elapsed        float64 `gorm:"type:int"`
+	User           User    `gorm:"association_foreignkey:UserID"`
 }
 
 type ScoreBoard struct {
 	gorm.Model
 	UserID   int    `gorm:"column:user_id"`
 	Username string `gorm:"type:varchar(255)"`
-	Score    string `gorm:"type:int"`
+	Score    int    `gorm:"type:int"`
 	User     User   `gorm:"association_foreignkey:UserID"`
 }
 
@@ -73,19 +74,19 @@ func Level(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
 	if err != nil {
-		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
 	sessionID, err := uuid.FromString(cookie.Value)
 	if err != nil {
-		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
 
 	// Get the session from the database
 	var session Session
 	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
-		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
 	var user User
@@ -164,18 +165,19 @@ func Game(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
 	if err != nil {
-		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
 	sessionID, err := uuid.FromString(cookie.Value)
 	if err != nil {
-		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
+
 	// Get the session from the database
 	var session Session
 	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
-		http.Error(w, "Invalid session", http.StatusUnauthorized)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
 	var user User
@@ -246,11 +248,53 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						GameState.Elapsed += diff.Seconds()
 						db.Save(&GameState)
 						var score ScoreBoard
-						if err := db.Where("id = ?", session.UserID).First(&score).Error; err != nil {
+						if err := db.Where("user_id = ?", session.UserID).First(&score).Error; err != nil {
 							http.Error(w, "Invalid session", http.StatusUnauthorized)
 							return
 						}
-						http.Redirect(w, r, "Congratulation", http.StatusFound)
+						if GameState.GameDifficulty == "easy" {
+							score.Score += 3
+							fmt.Printf("+3")
+						}
+						if GameState.GameDifficulty == "medium" {
+							score.Score += 5
+							fmt.Printf("+5")
+						}
+						if GameState.GameDifficulty == "hard" {
+							score.Score += 7
+							fmt.Printf("+7")
+						}
+						if GameState.Live >= 9 {
+							score.Score += 8
+							fmt.Printf("+8")
+						}
+						if GameState.Live >= 5 && GameState.Live < 9 {
+							score.Score += 5
+							fmt.Printf("+5")
+						}
+						if GameState.Live > 0 && GameState.Live < 5 {
+							score.Score += 2
+							fmt.Printf("+2")
+						}
+						if GameState.Elapsed <= 10 {
+							score.Score += 16
+							fmt.Printf("+16")
+						}
+						if GameState.Elapsed > 10 && GameState.Elapsed <= 20 {
+							score.Score += 10
+							fmt.Printf("+10")
+						}
+						if GameState.Elapsed > 20 && GameState.Elapsed <= 30 {
+							score.Score += 5
+							fmt.Printf("+5")
+						}
+						if GameState.Elapsed > 30 {
+							score.Score += 2
+							fmt.Printf("+2")
+						}
+						db.Save(&score)
+						fmt.Printf("Le score est ici : %d", score.Score)
+						http.Redirect(w, r, "/scoreboard", http.StatusFound)
 					}
 					if GameState.Live == 0 || GameState.Live < 0 { // Loser
 						GameState.GCompleted = "true"
@@ -261,11 +305,13 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						GameState.Elapsed += diff.Seconds()
 						db.Save(&GameState)
 						var score ScoreBoard
-						if err := db.Where("id = ?", session.UserID).First(&score).Error; err != nil {
+						if err := db.Where("user_id = ?", session.UserID).First(&score).Error; err != nil {
 							http.Error(w, "Invalid session", http.StatusUnauthorized)
 							return
 						}
-						http.Redirect(w, r, "/Loser", http.StatusFound)
+						score.Score -= 15
+						db.Save(&score)
+						http.Redirect(w, r, "/scoreboard", http.StatusFound)
 					}
 				} else {
 					GameState.BadInput = "Error : you can only put 1 letter or a word with the same number of letter than the word to search!!!!!!"
@@ -292,6 +338,24 @@ func Loser(w http.ResponseWriter, r *http.Request) {
 
 }
 func Scoreboard(w http.ResponseWriter, r *http.Request) {
+	// Get the session ID from the cookie
+	cookie, err := r.Cookie("session_id")
+	if err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
+	sessionID, err := uuid.FromString(cookie.Value)
+	if err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
+
+	// Get the session from the database
+	var session Session
+	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
 	RenderTemplate(w, "Scoreboard")
 }
 func Inscription(w http.ResponseWriter, r *http.Request) {
@@ -346,22 +410,22 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 		// check if password meets conditions
 		var errorMessage string
 		if !pswdLowercase {
-			errorMessage += "Error: password must contain at least one lowercase letter. \n"
+			errorMessage += "Error: password must contain at least one lowercase letter. "
 		}
 		if !pswdUppercase {
-			errorMessage += "Error: password must contain at least one uppercase letter. \n"
+			errorMessage += "Error: password must contain at least one uppercase letter. "
 		}
 		if !pswdNumber {
-			errorMessage += "Error: password must contain at least one number. \n"
+			errorMessage += "Error: password must contain at least one number. "
 		}
 		if !pswdSpecial {
-			errorMessage += "Error: password must contain at least one special character. \n"
+			errorMessage += "Error: password must contain at least one special character. "
 		}
 		if !pswdLength {
-			errorMessage += "Error: password must be between 7 and 59 characters. \n"
+			errorMessage += "Error: password must be between 7 and 59 characters. "
 		}
 		if !pswdNoSpaces {
-			errorMessage += "Error: password cannot contain spaces. \n"
+			errorMessage += "Error: password cannot contain spaces. "
 		}
 		if errorMessage != "" {
 			tpl.ExecuteTemplate(w, "inscription.html", struct{ ErrorMessage string }{ErrorMessage: errorMessage})
@@ -376,7 +440,10 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 		// insert username and hashed password in database
 		users = User{Username: username, Password: string(hashedPassword)}
 		db.Create(&users)
-		http.Redirect(w, r, "../connexion", http.StatusSeeOther)
+		var score ScoreBoard
+		score = ScoreBoard{UserID: int(users.ID), Username: users.Username, Score: 0}
+		db.Create(&score)
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 	}
 	tpl.ExecuteTemplate(w, "inscription.html", nil)
 }
@@ -441,7 +508,7 @@ func Connexion(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, cookie)
 
 		// Redirect the user to the homepage
-		http.Redirect(w, r, "../level", http.StatusFound)
+		http.Redirect(w, r, "/level", http.StatusFound)
 	}
 	tpl.ExecuteTemplate(w, "connexion.html", nil)
 }

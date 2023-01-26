@@ -95,6 +95,14 @@
   </style>
 </head>
 <body>
+<audio autoplay id="myaudio">
+    <source src="/Music/Smugglers-Incrip.mp3">
+</audio>
+
+<script>
+    var audio = document.getElementById("myaudio");
+    audio.volume = 0.1;
+</script>
 <div class="registration-container">
     <form action="/inscription" method="POST">
         <label for="username">Name:</label><br>
