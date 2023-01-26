@@ -74,35 +74,34 @@
         }
         h1[class="un"] {
             animation-duration: 7s;
-            animation-name: slidein;
             font-family: defused;
-            color: #dddddd;
+            color: white;
         }
         h1[class="deux"] {
             animation-duration: 7s;
-            animation-name: slidein;
             font-family: defused;
-            color: #dddddd;
+            color: white;
+            top: 20px;
         }
         h1[class="trois"] {
             animation-duration: 7s;
-            animation-name: slidein;
             font-family: defused;
-            color: #dddddd;
-            margin-top: 20vh;
+            color: white;
         }
 
-        @keyframes slidein {
-            from {
-                margin-left: 100vh;
-                width: 300vh;
-            }
-
-            to {
-                margin-left: 0vh;
-                width: 100vh;
-            }
+        .deux{
+            margin-top: -45vh;
+            margin-left: 38vh;
         }
+        .un{
+            margin-top: 35vh;
+        }
+
+        .trois{
+            margin-top: 30vh;
+
+        }
+
     </style>
 </head>
 <body>
@@ -112,7 +111,7 @@
 
 <script>
     var audio = document.getElementById("myaudio");
-    audio.volume = 0.1;
+    audio.volume = 5;
 </script>
 <h1>{{.ErrorMessage}}</h1>
 <div class="login-container">
@@ -127,8 +126,12 @@
     <input type="submit" value="registration">
 </form>
 </div>
-<H1 class="un">LOGIN NOW TO DISCOVER ALL OUR UNIVERSE</H1>
+<div class="deux">
 <h1 class="deux">MAINLY INSPIRED BY THE GAME THE LAST OF US</h1>
-<h1 class="trois">CREATED BY SEBASTIEN AND AMADOU</h1>
+</div>
+<div class="un">
+    <H1 class="un">LOGIN NOW TO DISCOVER ALL OUR UNIVERSE</H1> </div>
+<div class="trois">
+    <h1 class="trois">CREATED BY SEBASTIEN AND AMADOU</h1> </div>
 </body>
 </html>

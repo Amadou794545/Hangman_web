@@ -80,10 +80,7 @@ p {
 }
 
 input[type=text]{
-    background-color: black;
+    background-color: #cccccc;
     border: 4px solid white;
     border-radius: 5px;
-}
-input[type=text]:hover{
-    background-color: #cccccc;
 }
