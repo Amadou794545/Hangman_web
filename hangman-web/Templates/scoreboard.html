@@ -17,19 +17,23 @@
 </script>
 <a class="reset"  href="/level" title="Vous ne le regretterez pas"><strong>RESET</strong></a>
 
-<table class="tableau">
+<table>
   <thead>
   <tr>
-    <th><h2>NAME</h2></th>
-    <th><h2>SCORE</h2></th>
+    <th>Name</th>
+    <th>Score</th>
   </tr>
-  <tbody>
-  <tr>
-    <td> SEBASTIEN </td>
-    <td> 20POINTS </td>
-  </tbody>
   </thead>
+  <tbody>
+  {{ range $i, $e := .Scores }}
+  <tr>
+    <td>{{ $e.Username }}</td>
+    <td>{{ $e.Score }}</td>
+  </tr>
+  {{ end }}
+  </tbody>
 </table>
+
 <img class="lucioleimg" src="../Assets/luciole.png">
 <h1 class="luciole">LUCIOLE: 0-50 ZP</h1>
 

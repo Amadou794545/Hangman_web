@@ -356,7 +356,11 @@ func Scoreboard(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
-	RenderTemplate(w, "Scoreboard")
+	t, err := template.ParseFiles("./Templates/scoreboard.html")
+
+	var Scores []ScoreBoard
+	db.Find(&Scores)
+	t.Execute(w, map[string]interface{}{"Scores": Scores})
 }
 func Inscription(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
