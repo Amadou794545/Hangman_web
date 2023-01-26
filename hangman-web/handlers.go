@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm"
 	"html/template"
 	"net/http"
+	"sort"
 	"strconv"
 	"time"
 	"unicode"
@@ -333,6 +334,7 @@ func Loser(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Loser")
 
 }
+
 func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
@@ -356,8 +358,12 @@ func Scoreboard(w http.ResponseWriter, r *http.Request) {
 
 	var Scores []ScoreBoard
 	db.Find(&Scores)
+	sort.Slice(Scores, func(i, j int) bool {
+		return Scores[i].Score > Scores[j].Score
+	})
 	t.Execute(w, map[string]interface{}{"Scores": Scores})
 }
+
 func Inscription(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	//Destroy cookies --> Deconnexion
