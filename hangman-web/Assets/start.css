@@ -1,3 +1,24 @@
 .content {
     display: none;
 }
+body{
+    background-image:url("https://th.bing.com/th/id/R.0c070a061d2c05c3929e0e6cdf96dcd4?rik=2c%2fmiJ1amPwpUA&riu=http%3a%2f%2fhdqwalls.com%2fwallpapers%2fellie-the-last-of-us-part-2-guitar-monochrome-s9.jpg&ehk=r5HdwQqB7lo6ts%2b0hCm9CmWM%2bLl4GudO3R2LCOdT47A%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover;
+    font-family: defused;
+    color: white;
+}
+@font-face {
+    font-family: defused;
+    src:url('../Assets/defused.ttf');
+}
+.login{
+    font-family: defused;
+
+}
+.registration{
+    font-family: defused;
+
+}
+.hangman{
+    font-size: 10vh;
+}
