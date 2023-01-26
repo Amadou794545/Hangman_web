@@ -15,8 +15,37 @@
   var audio = document.getElementById("myaudio");
   audio.volume = 0.1;
 </script>
-<a class="reset"  href="/level" title="Vous ne le regretterez pas"><strong>RESET</strong></a>
 
+
+
+<div class="container">
+  <div class="popup" id="popup">
+    <h2>Thanks you !</h2>
+    <p>Your game is finish</p>
+    <button type="button" onclick="closePopup()"><Ok></Ok></button>
+  </div>
+</div>
+
+<script>
+  let popup = document.getElementById("popup");
+  window.onload = function() {
+    openPopup();
+  }
+  function openPopup(){
+  popup.classList.add("open-popup");
+    document.body.classList.add("no-blur");
+    overlay.style.visibility = "visible";
+  }
+
+  function closePopup(){
+    popup.classList.remove("open-popup");
+    document.querySelector("body").classList.remove("no-blur");
+    document.querySelector(".overlay").style.pointerEvents = "auto";
+  }
+</script>
+
+<div class="overlay">
+  <a class="reset"  href="/level" title="Vous ne le regretterez pas"><strong>RESET</strong></a>
 <table class="tableau">
   <thead>
   <tr>
@@ -46,6 +75,6 @@
 <img class="puantimg" src="../Assets/PUANTS.png">
 <H1 class="puant">PUANT: 301-INFINI ZP</H1>
 
-
+</div>
 </body>
 </html>

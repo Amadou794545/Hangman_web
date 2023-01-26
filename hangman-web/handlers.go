@@ -141,10 +141,6 @@ func Level(w http.ResponseWriter, r *http.Request) {
 
 func Start(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, "Start")
-	if r.URL.Path != "/" {
-		http.Error(w, "404 not found.", http.StatusNotFound)
-		return
-	}
 }
 
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
