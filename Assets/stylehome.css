@@ -1,0 +1,83 @@
+body{
+    background-image:url("https://hiepsibaotap.com/wp-content/uploads/2020/04/459654.jpg");
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+body .hangman {
+    background-image: linear-gradient(to left,black,white);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 25vh;
+    font-family: defused;
+    position: relative;
+    top: 0vh;
+    text-shadow: 0 0 0.2em white;
+    animation-duration: 7s;
+    animation-name: slidein;
+}
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }}
+@font-face {
+    font-family: defused;
+    src:url('defused.ttf');
+}
+a{
+     font-family: defused;
+ }
+h1{
+    font-size: 120px;
+    font-family: defused;
+color: white;
+}
+.buttongame{
+    border: none;
+    background-color: #212121;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 5vh;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    top: 40vh;
+    left: 100vh;
+    transform: translateX(-50%);
+}
+.buttongame:hover{
+    background-color: indianred;
+}
+
+.buttonmultiplayer{
+    border: none;
+    background-color: #212121;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    top: 55vh;
+    left: 100vh;
+    transform: translateX(-50%);
+}
+.buttonmultiplayer:hover{
+    background-color: indianred;
+}
