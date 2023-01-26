@@ -6,17 +6,14 @@
   <style>
       body {
           background-color: #f2f2f2;
-          background-image:url("https://i.gifer.com/64kr.gif");
+          background-image:url("https://images.alphacoders.com/129/1290820.jpg");
           background-size: cover;
-          height: 100vh;
-          padding:0;
-          margin-top:0;
           font-family: defused;
 
       }
 
       .registration-container {
-          width: 400px;
+          width: 65vh;
           margin: 0;
           background-color: gray;
           padding: 20px;
@@ -110,6 +107,9 @@
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Submit">
+    </form>
+    <form action="/connexion" method="post">
+        <input type="submit" value="return">
     </form>
     {{if .ErrorMessage}}
     <div class="error">{{.ErrorMessage}}</div>
