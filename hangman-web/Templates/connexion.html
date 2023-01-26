@@ -73,22 +73,35 @@
             font-family: defused;
 
         }
-        h1 {
-            animation-duration: 7s;
+        h1[class="un"] {
+            animation-duration: 3s;
             animation-name: slidein;
             font-family: defused;
             color: #dddddd;
         }
+        h1[class="deux"] {
+            animation-duration: 5s;
+            animation-name: slidein;
+            font-family: defused;
+            color: #dddddd;
+        }
+        h1[class="trois"] {
+            animation-duration: 7s;
+            animation-name: slidein;
+            font-family: defused;
+            color: #dddddd;
+            margin-top: 25vh;
+        }
 
         @keyframes slidein {
             from {
-                margin-left: 100%;
-                width: 300%;
+                margin-left: 100vh;
+                width: 300vh;
             }
 
             to {
-                margin-left: 0%;
-                width: 100%;
+                margin-left: 0vh;
+                width: 100vh;
             }
         }
     </style>
@@ -107,8 +120,8 @@
     <input type="submit" value="registration">
 </form>
 </div>
-<H1>LOGIN NOW TO DISCOVER ALL OUR UNIVERSE</H1>
-<h1>MAINLY INSPIRED BY THE GAME THE LAST OF US</h1>
-<h1>CREATED BY SEBASTIEN AND AMADOU</h1>
+<H1 class="un">LOGIN NOW TO DISCOVER ALL OUR UNIVERSE</H1>
+<h1 class="deux">MAINLY INSPIRED BY THE GAME THE LAST OF US</h1>
+<h1 class="trois">CREATED BY SEBASTIEN AND AMADOU</h1>
 </body>
 </html>
