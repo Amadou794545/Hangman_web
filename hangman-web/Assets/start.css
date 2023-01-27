@@ -24,6 +24,7 @@ body{
     border-radius: 0;
     position: absolute;
     cursor: pointer;
+    border:1px solid white;
 
 }
 .login:hover{
@@ -43,7 +44,7 @@ body{
     position: absolute;
     margin-top: 13vh;
     cursor: pointer;
-
+    border:1px solid white;
 }
 .registration:hover{
     background-color: indianred;
