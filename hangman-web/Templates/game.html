@@ -10,8 +10,19 @@
 <!--<input type="" title="entrer une lettre" >-->
 <div class="div_principal">
   <div class="div_gauche">
-    <H1> {{ .Result}}</H1>
-     <p class="live">You have {{ .Live }} attempts remaining</p>
+    <script>
+      function addSpaces(str) {
+        return str.split("").join(" ");
+      }
+    </script>
+
+    <H1 id="result"> {{ .Result }} </H1>
+    <script>
+      var result = document.getElementById("result");
+      result.innerHTML = addSpaces(result.innerHTML);
+    </script>
+
+    <p class="live">You have {{ .Live }} attempts remaining</p>
     <form action="../game" method="post">
       <input type="text" id="Enter" name="Enter" autofocus>
       <input type="submit" >
