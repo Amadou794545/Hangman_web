@@ -449,14 +449,14 @@ func Connexion(w http.ResponseWriter, r *http.Request) {
 		var errorMessage string
 		if err := db.Where("username = ?", username).First(&user).Error; err != nil {
 			if err != nil {
-				errorMessage = "Error: password cannot contain spaces. "
+				errorMessage = "Error: Bas Username.. "
 			}
 		}
 
 		// Compare the bcrypt password
 		if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
 			if err != nil {
-				errorMessage = "Error: password cannot contain spaces. "
+				errorMessage = "Error: Bas Password. "
 			}
 		}
 		if errorMessage != "" {
