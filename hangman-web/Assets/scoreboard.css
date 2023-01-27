@@ -138,7 +138,8 @@ color: black;
 
 
 .popup{
-    width: 400px;
+    width: 60vh;
+    height:55vh;
     background: #fff;
     border-radius: 6px;
     position: absolute;
@@ -146,7 +147,7 @@ color: black;
     left: 50%;
     transform: translate(-50%,-50%) scale(0.1);
     text-align: center;
-    padding: 0 30px 30px;
+    padding: 0 40px 40px;
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 
@@ -155,20 +156,39 @@ color: black;
     font-size: 38px;
     font-weight: 500;
     margin: 30px 0 10px;
+    font-family: defused;
+}
+.popup H3{
+    font-family: defused;
+    font-size: 4vh;
+    margin-top: -30vh;
+}
+.popup img{
+    width: 17vh;
+    height:15vh;
+    position:relative;
+    top:-25vh
+}
+
+.popup h4{
+    position:relative;
+    top:-20vh;
+    left:-20vh;
+    font-family: defused;
 }
 
 .popup button{
-    width: 100%;
-    margin-top: 50px;
-    padding: 10px 0;
+    margin-top: 38vh;
     background: #6fd649;
     color: #fff;
     border: 0;
     outline: none;
-    font-size: 18px;
+    font-size: 5vh;
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    font-family: defused;
+
 }
 
 .open-popup{

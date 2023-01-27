@@ -66,6 +66,8 @@ body .level {
     margin-top: -10vh;
     margin-left: 108vh;
     transform: translateX(-50%);
+    cursor: pointer;
+
 
 }
 .buttoneasy:hover{
@@ -86,6 +88,8 @@ body .level {
     margin-top: 5vh;
     margin-left: 108vh;
     transform: translateX(-50%);
+    cursor: pointer;
+
 }
 .buttonmedium:hover{
     background-color: indianred;
@@ -105,6 +109,8 @@ body .level {
     margin-top: 20vh;
     margin-left: 108vh;
     transform: translateX(-50%);
+    cursor: pointer;
+
 }
 .buttonhard:hover{
     background-color: indianred;
