@@ -3,7 +3,6 @@ package main
 import (
 	"archive/zip"
 	"fmt"
-	"github.com/gorilla/sessions"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"html/template"
@@ -19,7 +18,6 @@ const port = ":443"
 var tpl *template.Template
 
 var db *gorm.DB
-var store = sessions.NewCookieStore([]byte("super-secret-password"))
 
 func main() {
 	Unzip()
@@ -30,7 +28,11 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+
+	//Create the database and match between postgresql and gorm
 	db.AutoMigrate(&User{}, &Session{}, &HangmanData{}, &ScoreBoard{})
+
+	//Every HandleFunc to set the pattern of page
 	http.HandleFunc("/", Start)
 	http.HandleFunc("/connexion", Connexion)
 	http.HandleFunc("/level", Level)
@@ -39,6 +41,7 @@ func main() {
 	http.HandleFunc("/scoreboard", Scoreboard)
 	http.HandleFunc("/inscription", Inscription)
 
+	//Make folder accessible in the html and be loaded at the launch server
 	http.Handle("/Templates/", http.StripPrefix("/Templates/", http.FileServer(http.Dir("Templates"))))
 	http.Handle("/Assets/", http.StripPrefix("/Assets/", http.FileServer(http.Dir("Assets"))))
 	http.Handle("/Music/", http.StripPrefix("/Music/", http.FileServer(http.Dir("Music"))))
@@ -46,6 +49,7 @@ func main() {
 	http.ListenAndServe(port, nil)
 }
 
+// Function do downlaod zip from google drive and unzip
 func Unzip() {
 	DownloadAnim()
 	dst := "Music"

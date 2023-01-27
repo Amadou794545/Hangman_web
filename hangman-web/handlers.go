@@ -2,7 +2,6 @@ package main
 
 import (
 	"Hangman/modules"
-	"fmt"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -14,6 +13,7 @@ import (
 	"unicode"
 )
 
+// Table User
 type User struct {
 	gorm.Model
 	Username string `gorm:"type:varchar(255)"`
@@ -22,6 +22,7 @@ type User struct {
 	Hangman  []HangmanData
 }
 
+// Table Session
 type Session struct {
 	gorm.Model
 	SessionID  uuid.UUID `gorm:"primary_key"`
@@ -34,6 +35,7 @@ type Session struct {
 	User User `gorm:"association_foreignkey:UserID"`
 }
 
+// Table HangmanData
 type HangmanData struct {
 	gorm.Model
 	UserID         int    `gorm:"column:user_id"`
@@ -45,7 +47,7 @@ type HangmanData struct {
 	Index          string `gorm:"type:varchar(255)"`
 	UserLetter     string `gorm:"type:varchar(255)"`
 	Picture        string `gorm:"type:varchar(255)"`
-	AlreadyUsed    string `gorm:"type:varchar(255)"`
+	AlreadyUsed    string `gorm:"type:varchar(255		)"`
 	BadInput       string `gorm:"type:varchar(255)"`
 	OnlyLowerCase  string `gorm:"type:varchar(255)"`
 	Reveal         string `gorm:"type:varchar(255)"`
@@ -55,6 +57,7 @@ type HangmanData struct {
 	User           User    `gorm:"association_foreignkey:UserID"`
 }
 
+// Table Scoreboard
 type ScoreBoard struct {
 	gorm.Model
 	UserID   int    `gorm:"column:user_id"`
@@ -63,18 +66,17 @@ type ScoreBoard struct {
 	User     User   `gorm:"association_foreignkey:UserID"`
 }
 
-var tryWord bool
-var resultCorrectLetter bool
-
 type Data struct {
 	User      User
 	GameState HangmanData
 }
 
+// Function of the start page
 func Start(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "start.html", nil)
 }
 
+// Function of the start page
 func Level(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
@@ -105,10 +107,12 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid session", http.StatusUnauthorized)
 		return
 	}
+	//Set value from button on html page
 	easy := r.FormValue("Easy")
 	medium := r.FormValue("Medium")
 	hard := r.FormValue("Hard")
 	if easy != "" {
+		//Launch the game in easy mode
 		Difficulty(easy, &GameState)
 		GameState.Picture = "/Assets/zombie.png"
 		GameState.UserID = session.UserID
@@ -118,6 +122,7 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		}
 		http.Redirect(w, r, "/game", http.StatusFound)
 	} else if medium != "" {
+		//Launch the game in medium mode
 		Difficulty(medium, &GameState)
 		GameState.Picture = "/Assets/zombie.png"
 		GameState.UserID = session.UserID
@@ -127,6 +132,7 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		}
 		http.Redirect(w, r, "/game", http.StatusFound)
 	} else if hard != "" {
+		//Launch the game in hard mode
 		Difficulty(hard, &GameState)
 		GameState.Picture = "/Assets/zombie.png"
 		GameState.UserID = session.UserID
@@ -144,6 +150,7 @@ func Level(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Function of the Game page
 func Game(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
@@ -179,9 +186,16 @@ func Game(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	var tryWord bool
+	var resultCorrectLetter bool
+
+	//Evert db.Save(&GameState) are here to save data in database
+
 	GameState.GCompleted = "false"
 	GameState.UserLetter = r.FormValue("Enter")
 	db.Save(&GameState)
+
+	//test if user put letter
 	if GameState.UserLetter != "" {
 		if GameState.Live > 0 {
 			GameState.OnlyLowerCase = ""
@@ -193,6 +207,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 			db.Save(&GameState)
+			//Test if it's onlylowercase
 			if GameState.OnlyLowerCase == "" {
 				if len(GameState.UserLetter) == 1 || len(GameState.UserLetter) == len(GameState.Word) {
 					var try bool
@@ -206,28 +221,29 @@ func Game(w http.ResponseWriter, r *http.Request) {
 							GameState.Live -= 1
 							db.Save(&GameState)
 							GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+							//Set timer
 							elapsed := time.Now()
 							diff := elapsed.Sub(GameState.StartTime)
-							fmt.Printf("Ici the time : %f \n", diff.Seconds())
 							GameState.Elapsed += diff.Seconds()
 							db.Save(&GameState)
 						} else if resultCorrectLetter == false && tryWord == true {
 							GameState.Live -= 2
 							db.Save(&GameState)
+							//Set timer
 							elapsed := time.Now()
 							diff := elapsed.Sub(GameState.StartTime)
-							fmt.Printf("Ici the time : %f \n", diff.Seconds())
 							GameState.Elapsed += diff.Seconds()
 							db.Save(&GameState)
 						}
 
 					}
+					//Test if the word is found
 					if modules.TestFinish(GameState.Result) == true { // Winner
 						GameState.GCompleted = "true"
 						GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+						//Set timer
 						elapsed := time.Now()
 						diff := elapsed.Sub(GameState.StartTime)
-						fmt.Printf("Ici the time : %f \n", diff.Seconds())
 						GameState.Elapsed += diff.Seconds()
 						db.Save(&GameState)
 						var score ScoreBoard
@@ -237,15 +253,15 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						}
 						score.Score += ScoreCalcul(GameState.GameDifficulty, GameState.Live, GameState.Elapsed)
 						db.Save(&score)
-						fmt.Printf("Le score est ici : %d", score.Score)
 						http.Redirect(w, r, "/scoreboard?message=Popup", http.StatusFound)
 					}
+					//Test if he loses
 					if GameState.Live == 0 || GameState.Live < 0 { // Loser
 						GameState.GCompleted = "true"
 						GameState.Picture = PrintJose(GameState.Live, GameState.Picture)
+						//Set timer
 						elapsed := time.Now()
 						diff := elapsed.Sub(GameState.StartTime)
-						fmt.Printf("Ici the time : %f \n", diff.Seconds())
 						GameState.Elapsed += diff.Seconds()
 						db.Save(&GameState)
 						var score ScoreBoard
@@ -265,7 +281,6 @@ func Game(w http.ResponseWriter, r *http.Request) {
 		}
 		elapsed := time.Now()
 		diff := elapsed.Sub(GameState.StartTime)
-		fmt.Printf("Ici the time : %f \n", diff.Seconds())
 		GameState.Elapsed += diff.Seconds()
 	}
 	GameState.StartTime = time.Now()
@@ -273,6 +288,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, GameState)
 }
 
+// Function of the Scoreboard page
 func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
@@ -336,6 +352,7 @@ func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, map[string]interface{}{"Scores": Scores, "GameState": GameState, "DataGames": DataGames, "Users": Users, "TotalPoint": TotalPoint, "Symbol": Symbol, "Picture": Picture})
 }
 
+// Function of the Inscription page
 func Inscription(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	//Destroy cookies --> Deconnexion
@@ -426,6 +443,7 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "inscription.html", nil)
 }
 
+// Function of the Connexion page
 func Connexion(w http.ResponseWriter, r *http.Request) {
 	// Get the form data
 	username := r.FormValue("username")
@@ -491,6 +509,7 @@ func Connexion(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "connexion.html", nil)
 }
 
+// Function of the EasterEggs page
 func EasterEggs(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")

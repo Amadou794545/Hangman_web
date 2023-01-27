@@ -1,6 +1,8 @@
 package main
 
 func PrintJose(Live int, Picture string) string {
+
+	//Switch the png to display with the live in parameters
 	switch Live {
 	case 10:
 		Picture = "/Assets/zombie.png"

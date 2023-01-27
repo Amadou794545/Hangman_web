@@ -5,6 +5,8 @@ import "fmt"
 func ScoreCalcul(difficulty string, live int, elapsed float64) int {
 
 	var score int
+
+	//Function to calcul the score of the player from the game given in parameters
 	if difficulty == "easy" {
 		score += 3
 		fmt.Printf("+3")
