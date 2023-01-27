@@ -94,7 +94,9 @@
             margin-left: 74vh;
             color: white;
         }
-
+.error{
+    color: white;
+}
 
 
 
@@ -109,7 +111,6 @@
     var audio = document.getElementById("myaudio");
     audio.volume = 1;
 </script>
-<h1>{{.ErrorMessage}}</h1>
 <div class="login-container">
     <form action="/connexion" method="post" >
         <label for="username">Username :</label>
@@ -122,6 +123,8 @@
     <input type="submit" value="registration">
 </form>
 </div>
+<h1 class="error">{{.ErrorMessage}}</h1>
+
 <div class="deux">
 <h1 >MAINLY INSPIRED BY THE GAME THE LAST OF US</h1>
     <H1 >LOGIN NOW TO DISCOVER ALL OUR UNIVERSE</H1> </div>
