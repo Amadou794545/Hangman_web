@@ -28,8 +28,8 @@ min-width: 60vh;
     box-shadow: 0 5px 50px rgba(0,0,0,0.15) ;
     position: relative;
     cursor: pointer;
-    margin-left: 135vh;
-    margin-top: 10vh;
+    margin-left: 130vh;
+    margin-top: -80vh;
     border:1px solid darkolivegreen;
     font-family: defused;
 }
@@ -84,6 +84,7 @@ color: white;
 
     width : 12vh;
     height : 12vh;
+    margin-top: 25vh;
 
 }
 
