@@ -33,14 +33,14 @@
 </div>
 
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const message = urlParams.get('message');
   let popup = document.getElementById("popup");
-  window.onload = function() {
-    openPopup();
-  }
+
   function openPopup(){
-  popup.classList.add("open-popup");
+    popup.classList.add("open-popup");
     document.body.classList.add("no-blur");
-    overlay.style.visibility = "visible";
+    document.querySelector(".overlay").style.pointerEvents = "none";
   }
 
   function closePopup(){
@@ -48,7 +48,16 @@
     document.querySelector("body").classList.remove("no-blur");
     document.querySelector(".overlay").style.pointerEvents = "auto";
   }
+
+  if (message === "Popup") {
+    window.onload = function() {
+      openPopup();
+    }
+  }
+
 </script>
+
+
 
 <div class="overlay">
   <a class="reset"  href="/level" title="Vous ne le regretterez pas"><strong>RESET</strong></a>

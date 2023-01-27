@@ -291,7 +291,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						}
 						db.Save(&score)
 						fmt.Printf("Le score est ici : %d", score.Score)
-						http.Redirect(w, r, "/scoreboard", http.StatusFound)
+						http.Redirect(w, r, "/scoreboard?message=Popup", http.StatusFound)
 					}
 					if GameState.Live == 0 || GameState.Live < 0 { // Loser
 						GameState.GCompleted = "true"
@@ -308,7 +308,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 						}
 						score.Score -= 15
 						db.Save(&score)
-						http.Redirect(w, r, "/scoreboard", http.StatusFound)
+						http.Redirect(w, r, "/scoreboard?message=Popup", http.StatusFound)
 					}
 				} else {
 					GameState.BadInput = "Error : you can only put 1 letter or a word with the same number of letter than the word to search!!!!!!"
