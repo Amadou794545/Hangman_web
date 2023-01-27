@@ -5,6 +5,7 @@ body{
 
 }
 
+
 body .level {
     background-image: linear-gradient(to left,black,white);
     -webkit-background-clip: text;
