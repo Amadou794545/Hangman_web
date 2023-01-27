@@ -13,12 +13,46 @@ body{
 }
 .login{
     font-family: defused;
+    border: none;
+    background-color: #212121;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    cursor: pointer;
 
+}
+.login:hover{
+    background-color: indianred;
 }
 .registration{
     font-family: defused;
+    border: none;
+    background-color: #212121;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    border-radius: 0;
+    position: absolute;
+    margin-top: 13vh;
+    cursor: pointer;
 
+}
+.registration:hover{
+    background-color: indianred;
 }
 .hangman{
     font-size: 10vh;
+}
+
+h2{
+    margin-top: 72vh;
+    margin-left: 120vh;
 }
