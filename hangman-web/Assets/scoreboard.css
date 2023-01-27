@@ -76,7 +76,8 @@ th,td{
 tbody,tr,td,th{
     border: 1px solid white;
     font-family: defused;
-color: black;
+color: white;
+    font-size: 3vh;
 }
 
 .lucioleimg{
@@ -88,11 +89,12 @@ color: black;
 }
 
 .luciole{
-    font-family: "Leelawadee UI";
+    font-family:defused,"Leelawadee UI";
+    text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;
 
     margin-left: 15vh;
     margin-top: -10vh;
-    color: black;
+    color: white;
 }
 
 .radiantimg{
@@ -102,11 +104,11 @@ color: black;
 
 }
 .radiant{
-    font-family: "Leelawadee UI";
-
+    font-family:defused,"Leelawadee UI";
+    text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;
     margin-left: 15vh;
     margin-top: -10vh;
-    color: black;
+    color: white;
 }
 .claqueurimg{
     width : 12vh;
@@ -115,11 +117,11 @@ color: black;
 
 }
 .claqueur{
-    font-family: "Leelawadee UI";
-
+    font-family:defused,"Leelawadee UI";
+    text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;
     margin-left: 15vh;
     margin-top: -10vh;
-    color: black;
+    color: white;
 }
 
 .puantimg{
@@ -128,11 +130,11 @@ color: black;
     margin-top: 5vh;
 }
 .puant{
-    font-family: "Leelawadee UI";
-
+    font-family:defused,"Leelawadee UI";
+    text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;
     margin-left: 15vh;
     margin-top: -10vh;
-    color: black;
+    color: white;
 }
 
 
