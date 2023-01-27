@@ -1,9 +1,7 @@
 body{
     background-image:url("https://hiepsibaotap.com/wp-content/uploads/2020/04/459654.jpg");
     background-size: cover;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
+
 
 }
 
@@ -16,7 +14,7 @@ body .level {
     font-size: 150px;
     font-family: defused;
     position: relative;
-    margin-top: -20vh;
+    top: -25vh;
     text-shadow: 0 0 0.2em white;
     animation-duration: 7s;
     animation-name: slidein;
@@ -63,8 +61,8 @@ body .level {
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    margin-top: -10vh;
-    margin-left: 108vh;
+    margin-top: -25vh;
+    margin-left: 40vh;
     transform: translateX(-50%);
     cursor: pointer;
 
@@ -84,8 +82,8 @@ body .level {
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    margin-top: 5vh;
-    margin-left: 108vh;
+    margin-top: -10vh;
+    margin-left: 40vh;
     transform: translateX(-50%);
     cursor: pointer;
 
@@ -105,8 +103,8 @@ body .level {
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    margin-top: 20vh;
-    margin-left: 108vh;
+    margin-top: 5vh;
+    margin-left: 40vh;
     transform: translateX(-50%);
     cursor: pointer;
 
@@ -121,4 +119,6 @@ body .level {
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
+    top: 77vh;
+    position: relative;
 }
