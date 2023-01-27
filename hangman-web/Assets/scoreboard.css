@@ -174,11 +174,10 @@ color: black;
 }
 .popup h4{
     position:relative;
-    top:-22vh;
+    top:-24vh;
     left:-20vh;
     font-family: defused;
-    z-index: 2;
-    font-size:17px;
+    font-size:120%;
 }
 
 .popup button{
