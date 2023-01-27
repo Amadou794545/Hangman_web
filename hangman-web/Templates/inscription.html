@@ -11,7 +11,7 @@
       }
 
       .registration-container {
-          width: 65vh;
+          width: 60vh;
           margin: 0;
           background-color: gray;
           padding: 20px;
@@ -72,8 +72,6 @@
       h1 {
           font-family: defused;
           color: #dddddd;
-          margin-top:-45vh;
-          margin-left: 80vh;
           text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;
 
       }
@@ -93,6 +91,7 @@
     audio.volume = 0.1;
 </script>
 <div class="registration-container">
+    <h1>SIGN UP</h1>
     <form action="/inscription" method="POST">
         <label for="username">Name:</label><br>
         <input type="text" id="username" name="username"><br>
@@ -107,6 +106,6 @@
     <div class="error">{{.ErrorMessage}}</div>
     {{end}}
 </div>
-<h1>SIGN UP</h1>
+
 </body>
 </html>
