@@ -2,7 +2,7 @@
     display: none;
 }
 body{
-    background-image:url("start.jpg");
+    background-image:url("/Music/start.jpg");
     background-size: cover;
     font-family: defused;
     color: white;
