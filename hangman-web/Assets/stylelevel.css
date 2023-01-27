@@ -15,7 +15,7 @@ body .level {
     font-size: 150px;
     font-family: defused;
     position: relative;
-    top: -25vh;
+    top: -200px;
     text-shadow: 0 0 0.2em white;
     animation-duration: 7s;
     animation-name: slidein;
@@ -62,8 +62,8 @@ body .level {
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    margin-top: -25vh;
-    margin-left: 40vh;
+    margin-top: -170px;
+    margin-left: 400px;
     transform: translateX(-50%);
     cursor: pointer;
 
@@ -83,8 +83,8 @@ body .level {
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    margin-top: -10vh;
-    margin-left: 40vh;
+    margin-top: -60px;
+    margin-left: 400px;
     transform: translateX(-50%);
     cursor: pointer;
 
@@ -104,8 +104,8 @@ body .level {
     margin: 4px 2px;
     border-radius: 0;
     position: absolute;
-    margin-top: 5vh;
-    margin-left: 40vh;
+    margin-top: 50px;
+    margin-left: 400px;
     transform: translateX(-50%);
     cursor: pointer;
 
@@ -120,6 +120,6 @@ body .level {
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
-    top: 77vh;
+    top: 550px;
     position: relative;
 }
