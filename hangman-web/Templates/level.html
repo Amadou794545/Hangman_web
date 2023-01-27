@@ -6,7 +6,6 @@
     <title>HANGMAN-WEB</title>
 </head>
 <body>
-<h1 class="text">{{.User.Username}} are you ready to save Elie and Joel from Infected?Be careful when you play, every time you lose, you allow the infected to get closer to Elie and Joel.</h1>
 <audio autoplay id="myaudio">
     <source src="/Music/TheWay-Level.mp3">
 </audio>
@@ -29,6 +28,7 @@
 <form action="../level" method="post">
     <input class="buttonhard" type="submit" id="Hard" name="Hard" value="hard" >
 </form>
+<h1 class="text">{{.User.Username}} are you ready to save Elie and Joel from Infected?Be careful when you play, every time you lose, you allow the infected to get closer to Elie and Joel.</h1>
 
 </body>
 </html>
