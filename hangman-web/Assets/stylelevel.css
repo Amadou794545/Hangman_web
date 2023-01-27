@@ -29,7 +29,8 @@ body .level {
     to {
         margin-left: 0vh;
         width: 100vh;
-    }}
+    }
+}
 
 @font-face {
     font-family: defused;
