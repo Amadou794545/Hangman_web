@@ -106,6 +106,6 @@ body .level {
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
-    top: 180px;
+    top: 30vh;
     position: relative;
 }
