@@ -71,6 +71,11 @@ type Data struct {
 	GameState HangmanData
 }
 
+func Start(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("./Templates/start.html")
+	t.Execute(w, nil)
+}
+
 func Level(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
@@ -138,24 +143,6 @@ func Level(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-}
-
-func Start(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Start")
-}
-
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
-	t, err := template.ParseFiles("./Templates/" + tmpl + ".html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	t.Execute(w, nil)
-}
-
-func Home(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Home")
-
 }
 
 func Game(w http.ResponseWriter, r *http.Request) {
@@ -249,46 +236,7 @@ func Game(w http.ResponseWriter, r *http.Request) {
 							http.Error(w, "Invalid session", http.StatusUnauthorized)
 							return
 						}
-						if GameState.GameDifficulty == "easy" {
-							score.Score += 3
-							fmt.Printf("+3")
-						}
-						if GameState.GameDifficulty == "medium" {
-							score.Score += 5
-							fmt.Printf("+5")
-						}
-						if GameState.GameDifficulty == "hard" {
-							score.Score += 7
-							fmt.Printf("+7")
-						}
-						if GameState.Live >= 9 {
-							score.Score += 8
-							fmt.Printf("+8")
-						}
-						if GameState.Live >= 5 && GameState.Live < 9 {
-							score.Score += 5
-							fmt.Printf("+5")
-						}
-						if GameState.Live > 0 && GameState.Live < 5 {
-							score.Score += 2
-							fmt.Printf("+2")
-						}
-						if GameState.Elapsed <= 10 {
-							score.Score += 16
-							fmt.Printf("+16")
-						}
-						if GameState.Elapsed > 10 && GameState.Elapsed <= 20 {
-							score.Score += 10
-							fmt.Printf("+10")
-						}
-						if GameState.Elapsed > 20 && GameState.Elapsed <= 30 {
-							score.Score += 5
-							fmt.Printf("+5")
-						}
-						if GameState.Elapsed > 30 {
-							score.Score += 2
-							fmt.Printf("+2")
-						}
+						score.Score += ScoreCalcul(GameState.GameDifficulty, GameState.Live, GameState.Elapsed)
 						db.Save(&score)
 						fmt.Printf("Le score est ici : %d", score.Score)
 						http.Redirect(w, r, "/scoreboard?message=Popup", http.StatusFound)
@@ -326,15 +274,6 @@ func Game(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, GameState)
 }
 
-func Congratulation(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Congratulation")
-}
-
-func Loser(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "Loser")
-
-}
-
 func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	// Get the session ID from the cookie
 	cookie, err := r.Cookie("session_id")
@@ -349,19 +288,53 @@ func Scoreboard(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the session from the database
-	var session Session
-	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
+	var Sessions Session
+	if err := db.Where("session_id = ?", sessionID).First(&Sessions).Error; err != nil {
 		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
 		return
 	}
 	t, err := template.ParseFiles("./Templates/scoreboard.html")
-
+	var GameState HangmanData
+	var Users User
+	if err := db.Where("user_id = ?", Sessions.UserID).Last(&GameState).Error; err != nil {
+		http.Error(w, "No Data", http.StatusUnauthorized)
+		return
+	}
+	if err := db.Where("id = ?", Sessions.UserID).Last(&Users).Error; err != nil {
+		http.Error(w, "No Data", http.StatusUnauthorized)
+		return
+	}
 	var Scores []ScoreBoard
 	db.Find(&Scores)
 	sort.Slice(Scores, func(i, j int) bool {
 		return Scores[i].Score > Scores[j].Score
 	})
-	t.Execute(w, map[string]interface{}{"Scores": Scores})
+	var DataGames int
+	var Symbol string
+	if GameState.Live <= 0 {
+		DataGames = -15
+	} else {
+		DataGames = ScoreCalcul(GameState.GameDifficulty, GameState.Live, GameState.Elapsed)
+		Symbol = "+"
+	}
+
+	var TotalPoint ScoreBoard
+	if err := db.Where("user_id = ?", Sessions.UserID).Last(&TotalPoint).Error; err != nil {
+		http.Error(w, "No Data", http.StatusUnauthorized)
+		return
+	}
+	var Picture string
+	if TotalPoint.Score <= 50 {
+		Picture = "/Assets/luciole.png"
+	} else if TotalPoint.Score > 50 && TotalPoint.Score <= 100 {
+		Picture = "/Assets/radiant.png"
+	} else if TotalPoint.Score > 100 && TotalPoint.Score <= 300 {
+		Picture = "/Assets/claqueur.png"
+	} else {
+		Picture = "/Assets/PUANTS.png"
+	}
+
+	t.Execute(w, map[string]interface{}{"Scores": Scores, "GameState": GameState, "DataGames": DataGames, "Users": Users, "TotalPoint": TotalPoint, "Symbol": Symbol, "Picture": Picture})
 }
 
 func Inscription(w http.ResponseWriter, r *http.Request) {
@@ -517,4 +490,36 @@ func Connexion(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/level", http.StatusFound)
 	}
 	tpl.ExecuteTemplate(w, "connexion.html", nil)
+}
+
+func EasterEggs(w http.ResponseWriter, r *http.Request) {
+	// Get the session ID from the cookie
+	cookie, err := r.Cookie("session_id")
+	if err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
+	sessionID, err := uuid.FromString(cookie.Value)
+	if err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
+
+	// Get the session from the database
+	var session Session
+	if err := db.Where("session_id = ?", sessionID).First(&session).Error; err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
+	t, err := template.ParseFiles("./Templates/EasterEgss.html")
+	var score ScoreBoard
+	if err := db.Where("user_id = ?", session.UserID).First(&score).Error; err != nil {
+		http.Redirect(w, r, "/connexion", http.StatusSeeOther)
+		return
+	}
+	score.Score += 1500
+	db.Save(&score)
+	http.Redirect(w, r, "/level", http.StatusSeeOther)
+	t.Execute(w, nil)
+
 }

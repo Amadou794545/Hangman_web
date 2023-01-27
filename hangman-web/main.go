@@ -33,11 +33,9 @@ func main() {
 	db.AutoMigrate(&User{}, &Session{}, &HangmanData{}, &ScoreBoard{})
 	http.HandleFunc("/", Start)
 	http.HandleFunc("/connexion", Connexion)
-	http.HandleFunc("/home", Home)
 	http.HandleFunc("/level", Level)
 	http.HandleFunc("/game", Game)
-	http.HandleFunc("/Congratulation", Congratulation)
-	http.HandleFunc("/Loser", Loser)
+	http.HandleFunc("/les_mentor_vous_etes_trop_fort_et_Antoine_le_boss_rien_a_dire", EasterEggs)
 	http.HandleFunc("/scoreboard", Scoreboard)
 	http.HandleFunc("/inscription", Inscription)
 
