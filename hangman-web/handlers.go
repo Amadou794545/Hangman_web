@@ -72,8 +72,7 @@ type Data struct {
 }
 
 func Start(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("./Templates/start.html")
-	t.Execute(w, nil)
+	tpl.ExecuteTemplate(w, "start.html", nil)
 }
 
 func Level(w http.ResponseWriter, r *http.Request) {

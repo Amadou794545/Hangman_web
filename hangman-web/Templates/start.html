@@ -7,7 +7,14 @@
 
 </head>
 <body>
+<audio autoplay id="myaudio">
+    <source src="/Music/Welcome.mp3">
+</audio>
 
+<script>
+    var audio = document.getElementById("myaudio");
+    audio.volume = 1;
+</script>
 <div class="content">
     <h1 class="hangman">Welcome to HANGMAN</h1>
 
@@ -20,14 +27,7 @@
 
     <h2>Create by: SEBASTIEN and AMADOU</h2>
 </div>
-<audio autoplay id="myaudio">
-    <source src="/Music/Welcome.mp3">
-</audio>
 
-<script>
-    var audio = document.getElementById("myaudio");
-    audio.volume = 5;
-</script>
 <script>
     // Get the content div
     var content = document.querySelector(".content");
