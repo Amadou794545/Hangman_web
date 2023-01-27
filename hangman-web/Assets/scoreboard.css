@@ -216,3 +216,8 @@ color: white;
 .overlay{
     pointer-events: auto;
 }
+
+.grade{
+    width: 10vh;
+    height:10vh;
+}

@@ -24,7 +24,7 @@
     <h2>Game statistics {{ .Users.Username }}</h2>
     <button type="button" onclick="closePopup()"><Ok>CLOSE</Ok></button>
     <h3>{{ .TotalPoint.Score }} ZP ({{ .Symbol }} {{ .DataGames }} ZP)</h3>
-    <img src="{{ .Picture }}">
+    <img  src="{{ .Picture }}">
 <h4>Time : {{ .GameState.Elapsed }} sec</h4>
 <h4>Live : {{ .GameState.Live }}</h4>
     <h4>Difficulty : {{ .GameState.GameDifficulty }}</h4>
@@ -92,7 +92,7 @@
     {{ $picture = "/Assets/PUANTS.png" }}
     {{ end }}
     <tr>
-      <td>{{ $e.Username }} <img src="{{ $picture }}"></td>
+      <td>{{ $e.Username }} <img class="grade" src="{{ $picture }}"></td>
       <td>{{ $e.Score }}</td>
     </tr>
     {{ end }}
